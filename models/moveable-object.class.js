@@ -1,6 +1,6 @@
 class MoveableObject {
     x = 100;
-    y = 240;
+    y = 100;
     img;
     height = 200;
     width = 100;
@@ -12,21 +12,21 @@ class MoveableObject {
     acceletation = 1;
 
     applyGravity() {
-        if (this.isAboveGround()) {
-            setInterval(() => {
+        setInterval(() => {
+            if (this.isAboveGround()) {
                 this.y -= this.speedY;
                 this.speedY -= this.acceletation;
-            }, 1000 / 25);
-        }
+            }
+        }, 1000 / 25);
     }
 
-    isAboveGround(){
+    isAboveGround() {
         return this.y < 180;
     }
 
     /**
      * Loads the starting image of the animation.
-     * @param {*} path 
+     * @param {Array} path 
      */
     loadImage(path) {
         this.img = new Image(); // this.img = document.getElementById('image') <img src="" id="img">
