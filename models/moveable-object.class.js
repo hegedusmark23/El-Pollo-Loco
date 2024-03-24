@@ -7,8 +7,27 @@ class MoveableObject {
     speed = 0.25;
     imageCache = {};
     currentImage = 0;
+    otherDirection = false;
+    speedY = 0;
+    acceletation = 1;
 
-    //loadImage('img/test.pmg')
+    applyGravity() {
+        if (this.isAboveGround()) {
+            setInterval(() => {
+                this.y -= this.speedY;
+                this.speedY -= this.acceletation;
+            }, 1000 / 25);
+        }
+    }
+
+    isAboveGround(){
+        return this.y < 180;
+    }
+
+    /**
+     * Loads the starting image of the animation.
+     * @param {*} path 
+     */
     loadImage(path) {
         this.img = new Image(); // this.img = document.getElementById('image') <img src="" id="img">
         this.img.src = path
@@ -22,13 +41,22 @@ class MoveableObject {
         arr.forEach((path) => {
             let img = new Image();
             img.src = path;
+            img.style = 'transform: scaleX(-1)';
             this.imageCache[path] = img;
         });
+    }
 
+    playAnimation(images) {
+        let i = this.currentImage % this.IMAGES_WALKING.length; // let i = 0 % 6;
+        let path = images[i];
+        this.img = this.imageCache[path];
+        this.currentImage++;
     }
 
     moveRight() {
-        console.log('Moving right');
+        setInterval(() => {
+            this.x += this.speed;
+        }, 1000 / 60)
     }
 
     moveLeft() {
