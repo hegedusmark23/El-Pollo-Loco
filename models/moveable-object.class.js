@@ -1,16 +1,11 @@
-class MoveableObject {
-    x = 100;
-    y = 100;
-    img;
-    height = 200;
-    width = 100;
+class MoveableObject extends DrawableObject {
+    
     speed = 0.25;
-    imageCache = {};
-    currentImage = 0;
     otherDirection = false;
     speedY = 0;
     acceletation = 1;
     energy = 100;
+    lastHit = 0;
 
     /**
      * Applies Gravity when the character over the given coordinate is.
@@ -28,11 +23,19 @@ class MoveableObject {
         this.energy -= 20;
         if (this.energy < 0) {
             this.energy = 0;
+        } else {
+            this.lastHit = new Date().getTime();
         }
     }
 
     isDead() {
         return this.energy == 0;
+    }
+
+    isHurt(){
+        let timepassed = new Date().getTime() - this.lastHit; //Difference in miliseconds.
+        timepassed = timepassed / 1000; //Difference in seconds.
+        return timepassed < 0.5; 
     }
 
     isColliding(mo) {
@@ -48,61 +51,29 @@ class MoveableObject {
         return this.y < 180;
     }
 
-    draw(ctx) {
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-    }
-
-    drawFrame(ctx) {
-        if (this instanceof Character || this instanceof Chicken || this instanceof Coins || this instanceof Endboss) {
-            ctx.beginPath();
-            ctx.lineWidth = "5";
-            ctx.strokeStyle = "blue";
-            ctx.rect(this.x, this.y, this.width, this.height)
-            ctx.stroke();
-        }
-    }
-
-    /**
-     * Loads the starting image of the animation.
-     * @param {Array} path 
-     */
-    loadImage(path) {
-        this.img = new Image(); // this.img = document.getElementById('image') <img src="" id="img">
-        this.img.src = path
-    }
-
-    /**
-     * 
-     * @param {Array} arr - ['img/image1.png', 'img/image2.png', ...]
-     */
-    loadImages(arr) {
-        arr.forEach((path) => {
-            let img = new Image();
-            img.src = path;
-            img.style = 'transform: scaleX(-1)';
-            this.imageCache[path] = img;
-        });
-    }
 
     /**
      * 
      * @param {Path} images 
      */
     playAnimation(images) {
-        let i = this.currentImage % this.IMAGES_WALKING.length; // let i = 0 % 6;
+        let i = this.currentImage % images.length; // let i = 0 % 6;
         let path = images[i];
         this.img = this.imageCache[path];
         this.currentImage++;
     }
 
+
     moveRight() {
         this.x += this.speed;
     }
+
 
     moveLeft() {
         this.x -= this.speed;
     }
 
+    
     jump() {
         this.speedY = 15;
     }
