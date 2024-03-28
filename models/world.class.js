@@ -10,6 +10,8 @@ class World {
     statusBar = new StatusBar();
     statusBarCoins = new StatusBarCoins();
     statusBarFlasks = new StatusBarFlasks();
+    throwableObjects = [];
+    background_music = new Audio('audio/background-music.mp3')
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -17,21 +19,40 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
-        this.checkCollisions();
+        this.run();
+        this.playBackgroundMusic();
+    }
+
+    playBackgroundMusic(){
+        this.background_music.muted = true;
+        this.background_music.volume  = 0.02 ;
+        this.background_music.play();  
     }
 
     /**
      * Checks if objects collide with eachother.
      */
-    checkCollisions() {
+    run() {
         setInterval(() => {
-            this.level.enemies.forEach((enemy) => {
+            this.checkCollisions();
+            this.checkThrowObjects();
+        }, 1000);
+    }
+
+    checkCollisions(){
+        this.level.enemies.forEach((enemy) => {
                 if (this.character.isColliding(enemy)) {
                     this.character.hit();
                     this.statusBar.setPercentage(this.character.energy)
                 }
             });
-        }, 1000);
+    }
+
+    checkThrowObjects(){
+        if (this.keyboard.D) {
+            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100)
+            this.throwableObjects.push(bottle)
+        }
     }
 
     draw() {
@@ -40,6 +61,7 @@ class World {
         this.ctx.translate(this.camera_x, 0); 
         this.addObjectsToMap(this.level.backgrounds);
         this.addObjectsToMap(this.level.clouds);
+
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
         this.addToMap(this.statusBarCoins);
@@ -48,7 +70,8 @@ class World {
 
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
-        
+        this.addObjectsToMap(this.throwableObjects)
+
         this.addObjectsToMap(this.level.coins);
         this.ctx.translate(-this.camera_x, 0);
         // Draw gonna be constantly called.

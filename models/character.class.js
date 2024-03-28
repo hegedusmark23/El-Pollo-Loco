@@ -66,18 +66,21 @@ class Character extends MoveableObject {
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
                 this.otherDirection = false;
+                this.walking_sound.volume  = 1;
                 this.walking_sound.play();
             }
 
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.moveLeft(); 
                 this.otherDirection = true;
+                this.walking_sound.volume  = 1;
                 this.walking_sound.play();
             }
 
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.walking_sound.pause();
                 this.jump();
+                this.jumping_sound.volume  = 0.5 ;
                 this.jumping_sound.play();
             }
             this.world.camera_x = -this.x + 100;
@@ -89,6 +92,7 @@ class Character extends MoveableObject {
                 this.playAnimation(this.IMAGES_DEAD)
             } else if (this.isHurt()){
                 this.playAnimation(this.IMAGES_HURT)
+                this.hurt_sound.volume  = 0.5 ;
                 this.hurt_sound.play();
             } else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);

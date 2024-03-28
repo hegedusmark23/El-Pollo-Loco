@@ -48,7 +48,11 @@ class MoveableObject extends DrawableObject {
      * Defines if the character above Ground is.
      */
     isAboveGround() {
-        return this.y < 180;
+        if (this instanceof ThrowableObject) { //Throwable object should always fall.
+            return true;
+        } else {
+            return this.y < 180;
+        }
     }
 
 
