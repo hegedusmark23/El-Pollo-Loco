@@ -20,11 +20,6 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
-        this.playBackgroundMusic();
-    }
-
-    playBackgroundMusic(){
-        this.background_music.muted = true;
         this.background_music.volume  = 0.02 ;
         this.background_music.play();  
     }

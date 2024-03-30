@@ -1,5 +1,9 @@
-
+@font-face {
+    font-family: Zabars;
+    src: url('font/Zabars.ttf');
+  }
 body{
+    font-family: Zabars;
     margin: 0px;
     display: flex;
     align-items: center;
@@ -13,4 +17,64 @@ body{
 
 canvas{
     background-color: black;
+    border-radius: 20px;
+}
+
+.canvas-mask{
+    height: 480px;
+    width: 720px;
+}
+
+h1{
+    font-size: 100px;
+    color: #BC7A0F;
+    text-shadow: -2px 2px 4px rgba(0, 0, 0, 1);
+    font-weight: 100;
+    margin-block-start: 20px;
+    margin-block-end: 20px;
+}
+
+.start-screen{
+    position: absolute;
+    height: 480px;
+    width: 720px;
+    border-radius: 20px;
+}
+
+.start-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 30px;
+    position: absolute;
+    z-index: 1;
+}
+
+.button{
+    padding: 20px;
+    border-radius: 20px;
+    background-color: #BC7A0F;
+    color: #FFCA1A;
+    font-size: 30px;
+    font-weight: 100;
+    transition: transform .2s;
+    box-shadow: 1px 4px 27px -2px rgba(0,0,0,0.75);
+}
+
+.button:hover{
+    background-color: #FFCA1A;
+    color: #BC7A0F;
+    transform: scale(1.01);
+}
+
+.d-none{
+    display: none;
+}
+
+.d-flex{
+    display: flex;
+}
+
+.pointer{
+    cursor: pointer;
 }

@@ -1,35 +1,39 @@
 let canvas;
 let world;
-let keyboard = new Keyboard(); 
+let keyboard = new Keyboard();
+let isFullscreen = false;
 
 
-function init(){
-canvas = document.getElementById('canvas');
-world = new World(canvas, keyboard);
+function init() {
+    startScreen = document.getElementById('start-screen');
+    canvas = document.getElementById('canvas');
+    world = new World(canvas, keyboard);
+    startScreen.classList.add('d-none');
 }
 
-function fullScreen(){
-    canvas.requestFullscreen();
+function fullScreen() {
+    if (isFullscreen == false) {
+        this.canvas.requestFullscreen();
+        isFullscreen = true;
+    } else {
+        this.document.exitFullscreen();
+        isFullscreen = false;
+    }
 }
 
 
 window.addEventListener("keydown", (e) => {
     if (e.keyCode == 39) {
         keyboard.RIGHT = true;
-    } 
-    if (e.keyCode == 37) {
+    } if (e.keyCode == 37) {
         keyboard.LEFT = true;
-    } 
-    if (e.keyCode == 40) {
+    } if (e.keyCode == 40) {
         keyboard.DOWN = true;
-    } 
-    if (e.keyCode == 38) {
+    } if (e.keyCode == 38) {
         keyboard.UP = true;
-    } 
-    if (e.keyCode == 32) {
+    } if (e.keyCode == 32) {
         keyboard.SPACE = true;
-    }
-    if (e.keyCode == 68) {
+    } if (e.keyCode == 68) {
         keyboard.D = true;
     }
 });
@@ -37,20 +41,15 @@ window.addEventListener("keydown", (e) => {
 window.addEventListener("keyup", (e) => {
     if (e.keyCode == 39) {
         keyboard.RIGHT = false;
-    } 
-    if (e.keyCode == 37) {
+    } if (e.keyCode == 37) {
         keyboard.LEFT = false;
-    } 
-    if (e.keyCode == 40) {
+    } if (e.keyCode == 40) {
         keyboard.DOWN = false;
-    } 
-    if (e.keyCode == 38) {
+    } if (e.keyCode == 38) {
         keyboard.UP = false;
-    } 
-    if (e.keyCode == 32) {
+    } if (e.keyCode == 32) {
         keyboard.SPACE = false;
-    }
-    if (e.keyCode == 68) {
+    } if (e.keyCode == 68) {
         keyboard.D = false;
     }
 });
