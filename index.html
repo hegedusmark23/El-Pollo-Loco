@@ -13,18 +13,46 @@
     <h1>El Pollo Loco</h1>
 
     <div class="canvas-mask" id="canvas-mask">
+
         <div id="start-screen">
             <img class="start-screen" src="img/9_intro_outro_screens/start/startscreen_1.png" alt="">
             <div class="start-buttons">
-                <div onclick="init()" class="pointer button">START GAME</div>
-                <div class="pointer button">CONTROLS</div>
+                <div onclick="init()" class="pointer button">start game</div>
+                <div onclick="toggleControls()" class="pointer button">controls</div>
             </div>
-            
-        </div>
-        <div class="d-none">
+       </div>
+
+       <div class="controls-window d-none" id="controls-window">
+            <div class="controls-content">
+                <img onclick="toggleControls()" class="close-button pointer" src="img/close.png" alt="">
+                <table>
+                    <tbody>
+                    <tr>
+                    <td>&nbsp;Move left</td>
+                    <td>&nbsp;<img class="button-img" src="img/left-arrow-button-icon.png" alt=""></td>
+                    </tr>
+                    <tr>
+                    <td>&nbsp;Move right</td>
+                    <td>&nbsp;<img class="button-img" src="img/right-arrow-button-icon.png" alt=""></td>
+                    </tr>
+                    <tr>
+                    <td>&nbsp;Jump</td>
+                    <td>&nbsp;<img class="button-img" src="img/space-button-icon.png" alt=""></td>
+                    </tr>
+                    <tr>
+                    <td>&nbsp;Throw Bottle</td>
+                    <td>&nbsp;<img class="button-img" src="img/d-button-icon.png" alt=""></td>
+                    </tr>
+                    </tbody>
+                    </table>
+            </div>
+       </div>
+
+        <div id="top-right-buttons" class="d-none">
             <img onclick="fullScreen()" src="img/full-screen.png" alt="">
             <img src="img/volume.png" alt="">
         </div>
+
         <canvas id="canvas" width="720" height="480"></canvas>
     </div>
 

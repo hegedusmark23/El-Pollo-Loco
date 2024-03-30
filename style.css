@@ -1,8 +1,9 @@
 @font-face {
     font-family: Zabars;
     src: url('font/Zabars.ttf');
-  }
-body{
+}
+
+body {
     font-family: Zabars;
     margin: 0px;
     display: flex;
@@ -15,17 +16,19 @@ body{
     background-size: cover;
 }
 
-canvas{
-    background-color: black;
+canvas {
     border-radius: 20px;
+    z-index: -1;
+
 }
 
-.canvas-mask{
+.canvas-mask {
     height: 480px;
     width: 720px;
+    position: relative;
 }
 
-h1{
+h1 {
     font-size: 100px;
     color: #BC7A0F;
     text-shadow: -2px 2px 4px rgba(0, 0, 0, 1);
@@ -34,47 +37,98 @@ h1{
     margin-block-end: 20px;
 }
 
-.start-screen{
+.start-screen {
     position: absolute;
     height: 480px;
     width: 720px;
     border-radius: 20px;
+    z-index: 0;
 }
 
-.start-buttons{
+.start-buttons {
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
     gap: 30px;
-    position: absolute;
+    position: relative;
     z-index: 1;
 }
 
-.button{
-    padding: 20px;
+.button {
+    padding: 6px;
     border-radius: 20px;
-    background-color: #BC7A0F;
-    color: #FFCA1A;
-    font-size: 30px;
+    background: rgb(255, 200, 29);
+    background: linear-gradient(90deg, rgb(230, 178, 23) 0%, rgba(255, 221, 0, 1) 40%, rgb(199, 154, 20) 100%);
+    color: #BC7A0F;
+    font-size: 60px;
     font-weight: 100;
     transition: transform .2s;
-    box-shadow: 1px 4px 27px -2px rgba(0,0,0,0.75);
+    box-shadow: 1px 4px 27px -2px rgba(0, 0, 0, 0.75);
+    margin-top: 30px;
+    border: 2px solid #A43D18;
 }
 
-.button:hover{
-    background-color: #FFCA1A;
-    color: #BC7A0F;
-    transform: scale(1.01);
+.button:hover {
+    background: rgb(161, 124, 10);
+    color: #FFCA1A;
+    transform: scale(1.02);
 }
 
-.d-none{
+.d-none {
     display: none;
 }
 
-.d-flex{
+.d-flex {
     display: flex;
 }
 
-.pointer{
+.pointer {
     cursor: pointer;
+}
+
+.controls-window {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.521);
+    z-index: 10;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.controls-content {
+    background-color: #FFCA1A;
+    height: 70%;
+    width: 70%;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.button-img {
+    height: 50px;
+}
+
+table {
+    font-size: 35px;
+    border-collapse: separate;
+    border-spacing: 80px 0;
+}
+
+.close-button {
+    position: absolute;
+    height: 30px;
+    top: 20px;
+    right: 20px;
+    transition: transform .2s;
+}
+
+.close-button:hover {
+    transform: scale(1.04);
 }

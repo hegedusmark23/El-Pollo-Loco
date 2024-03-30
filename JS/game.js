@@ -21,6 +21,17 @@ function fullScreen() {
     }
 }
 
+function toggleControls(){
+    let controlsWindow = document.getElementById('controls-window');
+    if (controlsWindow.classList.contains('d-none')) {
+        controlsWindow.classList.remove('d-none')
+        controlsWindow.classList.add('d-flex')
+    } else {
+        controlsWindow.classList.remove('d-flex')
+        controlsWindow.classList.add('d-none')
+    }
+}
+
 
 window.addEventListener("keydown", (e) => {
     if (e.keyCode == 39) {
