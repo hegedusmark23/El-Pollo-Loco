@@ -12,11 +12,11 @@ const level1 = new Level(
     ],
 
     [
-        new Clouds(),
-        new Clouds(),
-        new Clouds(),
-        new Clouds(),
-        new Clouds(),
+        new Clouds(0),
+        new Clouds(720),
+        new Clouds(720*2),
+        new Clouds(720*3),
+        new Clouds(720*4),
     ],
 
     [

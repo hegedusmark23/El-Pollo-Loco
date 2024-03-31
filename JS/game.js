@@ -29,13 +29,28 @@ function fullScreen() {
     if (isFullscreen == false) {
         this.canvas.requestFullscreen();
         isFullscreen = true;
-        console.log(isFullscreen);
     } else {
         this.document.exitFullscreen();
         isFullscreen = false;
-        console.log(isFullscreen);
     }
 }
+
+/*function fullScreen() {
+    let container = document.getElementById('canvas-mask');
+    if (isFullscreen == false) {
+        
+        container.requestFullscreen();
+        this.canvas.requestFullscreen();
+        isFullscreen = true;
+    } else {
+       
+         this.document.exitFullscreen();
+        isFullscreen = false;
+    }
+}*/
+
+
+
 
 function toggleControls(){
     let controlsWindow = document.getElementById('controls-window');
