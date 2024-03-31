@@ -25,29 +25,30 @@ function handleDisappearingObjects(){
     topRightButtons.classList.remove('d-none');
 }
 
-function fullScreen() {
+/*function fullScreen() {
     if (isFullscreen == false) {
         this.canvas.requestFullscreen();
+        this.canvas.style.objectFit = 'fill'
+        isFullscreen = true;
+    } else {
+        this.document.exitFullscreen();
+        isFullscreen = false;
+    }
+}*/
+
+function fullScreen() {
+    let container = document.getElementById('canvas-mask');
+    let canvas = document.getElementById('canvas');
+    if (isFullscreen == false) {
+        container.requestFullscreen();
+        canvas.style.width = '100%'
+        canvas.style.height = '100%'
         isFullscreen = true;
     } else {
         this.document.exitFullscreen();
         isFullscreen = false;
     }
 }
-
-/*function fullScreen() {
-    let container = document.getElementById('canvas-mask');
-    if (isFullscreen == false) {
-        
-        container.requestFullscreen();
-        this.canvas.requestFullscreen();
-        isFullscreen = true;
-    } else {
-       
-         this.document.exitFullscreen();
-        isFullscreen = false;
-    }
-}*/
 
 
 
