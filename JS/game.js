@@ -39,13 +39,16 @@ function handleDisappearingObjects(){
 function fullScreen() {
     let container = document.getElementById('canvas-mask');
     let canvas = document.getElementById('canvas');
+    let icon = document.getElementById('fullscreen-icon');
     if (isFullscreen == false) {
         container.requestFullscreen();
         canvas.style.width = '100%'
         canvas.style.height = '100%'
+        icon.src = 'img/exit-fullscreen.png'
         isFullscreen = true;
     } else {
         this.document.exitFullscreen();
+        icon.src = 'img/full-screen.png'
         isFullscreen = false;
     }
 }
