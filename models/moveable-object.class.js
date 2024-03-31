@@ -67,6 +67,15 @@ class MoveableObject extends DrawableObject {
         this.currentImage++;
     }
 
+    
+    AudioToArray(arr) {
+        Object.values(arr).forEach(sound => {
+            soundEffects.push(sound);
+            console.log('audio pushed to array')
+        });
+    }
+
+
 
     moveRight() {
         this.x += this.speed;

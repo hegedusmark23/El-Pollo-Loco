@@ -127,8 +127,17 @@ table {
     top: 20px;
     right: 20px;
     transition: transform .2s;
+    z-index: 9999;
 }
 
 .close-button:hover {
     transform: scale(1.04);
+}
+
+.top-right-buttons {
+    height: 30px;
+}
+
+.padding-right {
+    padding-right: 40px;
 }

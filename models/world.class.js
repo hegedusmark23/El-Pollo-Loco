@@ -11,7 +11,8 @@ class World {
     statusBarCoins = new StatusBarCoins();
     statusBarFlasks = new StatusBarFlasks();
     throwableObjects = [];
-    background_music = new Audio('audio/background-music.mp3')
+   
+
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -20,8 +21,6 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
-        this.background_music.volume  = 0.02 ;
-        this.background_music.play();  
     }
 
     /**
@@ -34,16 +33,16 @@ class World {
         }, 1000);
     }
 
-    checkCollisions(){
+    checkCollisions() {
         this.level.enemies.forEach((enemy) => {
-                if (this.character.isColliding(enemy)) {
-                    this.character.hit();
-                    this.statusBar.setPercentage(this.character.energy)
-                }
-            });
+            if (this.character.isColliding(enemy)) {
+                this.character.hit();
+                this.statusBar.setPercentage(this.character.energy)
+            }
+        });
     }
 
-    checkThrowObjects(){
+    checkThrowObjects() {
         if (this.keyboard.D) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100)
             this.throwableObjects.push(bottle)
@@ -53,7 +52,7 @@ class World {
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-        this.ctx.translate(this.camera_x, 0); 
+        this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backgrounds);
         this.addObjectsToMap(this.level.clouds);
 
