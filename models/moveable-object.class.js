@@ -19,6 +19,7 @@ class MoveableObject extends DrawableObject {
         }, 1000 / 25);
     }
 
+    
     hit() {
         this.energy -= 20;
         if (this.energy < 0) {
@@ -28,9 +29,11 @@ class MoveableObject extends DrawableObject {
         }
     }
 
+
     isDead() {
         return this.energy == 0;
     }
+
 
     isHurt(){
         let timepassed = new Date().getTime() - this.lastHit; //Difference in miliseconds.
@@ -38,12 +41,15 @@ class MoveableObject extends DrawableObject {
         return timepassed < 0.5; 
     }
 
+
     isColliding(mo) {
         return this.x + this.width > mo.x &&
             this.y + this.height > mo.y &&
             this.x < mo.x &&
             this.y < mo.y + mo.height
     }
+
+
     /**
      * Defines if the character above Ground is.
      */
@@ -71,10 +77,9 @@ class MoveableObject extends DrawableObject {
     AudioToArray(arr) {
         Object.values(arr).forEach(sound => {
             soundEffects.push(sound);
-            console.log('audio pushed to array')
+            console.log(sound, ' pushed to array')
         });
     }
-
 
 
     moveRight() {

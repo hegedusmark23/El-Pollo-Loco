@@ -4,19 +4,21 @@ let keyboard = new Keyboard();
 let isFullscreen = false;
 let isMuted = false;
 let background_music = new Audio('audio/background-music.mp3');
-
-soundEffects = [
+let soundEffects = [
     background_music,
 
 ];
 
 
 function init() {
+    initLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     playBackgoundMusic();
     handleDisappearingObjects();
+    
 }
+
 
 function handleDisappearingObjects(){
     startScreen = document.getElementById('start-screen');
@@ -25,16 +27,6 @@ function handleDisappearingObjects(){
     topRightButtons.classList.remove('d-none');
 }
 
-/*function fullScreen() {
-    if (isFullscreen == false) {
-        this.canvas.requestFullscreen();
-        this.canvas.style.objectFit = 'fill'
-        isFullscreen = true;
-    } else {
-        this.document.exitFullscreen();
-        isFullscreen = false;
-    }
-}*/
 
 function fullScreen() {
     let container = document.getElementById('canvas-mask');
@@ -54,8 +46,6 @@ function fullScreen() {
 }
 
 
-
-
 function toggleControls(){
     let controlsWindow = document.getElementById('controls-window');
     if (controlsWindow.classList.contains('d-none')) {
@@ -66,6 +56,7 @@ function toggleControls(){
         controlsWindow.classList.add('d-none')
     }
 }
+
 
 function toggleMuteAudio(){
      if (isMuted == false) {
@@ -78,6 +69,7 @@ function toggleMuteAudio(){
         document.getElementById('volume-icon').src = "img/volume.png";
     }
 }
+
 
 function playBackgoundMusic() {
     background_music.play();

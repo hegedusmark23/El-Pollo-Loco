@@ -10,6 +10,8 @@ class World {
     statusBar = new StatusBar();
     statusBarCoins = new StatusBarCoins();
     statusBarFlasks = new StatusBarFlasks();
+    collectedCoins = 0;
+    collectedBottles = 0;
     throwableObjects = [];
    
 
@@ -29,8 +31,12 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollisions();
-            this.checkThrowObjects();
-        }, 1000);
+            
+        }, 800);
+        setInterval(() => {
+          this.checkThrowObjects();  
+        },300);
+        
     }
 
     checkCollisions() {
@@ -58,14 +64,14 @@ class World {
 
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
-        this.addToMap(this.statusBarCoins);
         this.addToMap(this.statusBarFlasks);
+        this.addToMap(this.statusBarCoins);
         this.ctx.translate(this.camera_x, 0);
 
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.throwableObjects)
-
+        this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.level.coins);
         this.ctx.translate(-this.camera_x, 0);
         // Draw gonna be constantly called.
