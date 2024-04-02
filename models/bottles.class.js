@@ -18,7 +18,7 @@ class Bottles extends MoveableObject {
     }
 
     animate() {
-        let increasing = true; // Flag to control direction of height changes
+        let increasing = true; 
         setInterval(() => {
             if (increasing) {
                 this.y += 3;

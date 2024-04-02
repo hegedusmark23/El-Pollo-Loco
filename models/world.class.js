@@ -31,7 +31,7 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollisions();
-            
+            this.killByJump();
         }, 800);
         setInterval(() => {
           this.checkThrowObjects();  
@@ -52,6 +52,21 @@ class World {
         if (this.keyboard.D) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100)
             this.throwableObjects.push(bottle)
+        }
+    }
+
+    killByJump(){
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isJumpedOn(enemy)) {
+                this.enemies.splice(this.enemies.indexOf(enemy), 1);
+            }
+        });
+    }
+
+    stopGame(){
+        for (let i = 0; i < intervalIds.length; i++) {
+            const id = intervalIds[i];
+            this.clearInterval(id)
         }
     }
 
@@ -79,7 +94,6 @@ class World {
         requestAnimationFrame(function () {
             self.draw();
         });
-
     }
 
     addObjectsToMap(objects) {

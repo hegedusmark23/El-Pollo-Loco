@@ -1,11 +1,17 @@
 class MoveableObject extends DrawableObject {
-    
+
     speed = 0.25;
     otherDirection = false;
     speedY = 0;
     acceletation = 1;
     energy = 100;
     lastHit = 0;
+    offset = {
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+    }
 
     /**
      * Applies Gravity when the character over the given coordinate is.
@@ -19,7 +25,7 @@ class MoveableObject extends DrawableObject {
         }, 1000 / 25);
     }
 
-    
+
     hit() {
         this.energy -= 20;
         if (this.energy < 0) {
@@ -35,18 +41,24 @@ class MoveableObject extends DrawableObject {
     }
 
 
-    isHurt(){
+    isHurt() {
         let timepassed = new Date().getTime() - this.lastHit; //Difference in miliseconds.
         timepassed = timepassed / 500; //Difference in seconds.
-        return timepassed < 0.5; 
+        return timepassed < 0.5;
     }
 
 
     isColliding(mo) {
         return this.x + this.width > mo.x &&
             this.y + this.height > mo.y &&
-            this.x < mo.x &&
+            this.x < mo.x + mo.width &&
             this.y < mo.y + mo.height
+    }
+
+    isJumpedOn(mo) {
+        return this.x + this.width > mo.x &&
+         this.y + this.height <= mo.y &&
+         this.x < mo.x + mo.width
     }
 
 
@@ -73,11 +85,10 @@ class MoveableObject extends DrawableObject {
         this.currentImage++;
     }
 
-    
+
     AudioToArray(arr) {
         Object.values(arr).forEach(sound => {
             soundEffects.push(sound);
-            console.log(sound, ' pushed to array')
         });
     }
 
@@ -91,7 +102,7 @@ class MoveableObject extends DrawableObject {
         this.x -= this.speed;
     }
 
-    
+
     jump() {
         this.speedY = 15;
     }

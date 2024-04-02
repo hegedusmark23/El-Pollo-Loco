@@ -8,6 +8,7 @@ let soundEffects = [
     background_music,
 
 ];
+let intervalIds = [];
 
 
 function init() {
