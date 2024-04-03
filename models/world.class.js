@@ -31,12 +31,15 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollisions();
+            
             this.killByJump();
-        }, 800);
+            
+        }, 600);
         setInterval(() => {
-          this.checkThrowObjects();  
-        },300);
-        
+          this.checkThrowObjects();
+          this.collectCoins();  
+          this.collectBottles();
+        },100);
     }
 
     checkCollisions() {
@@ -58,10 +61,46 @@ class World {
     killByJump(){
         this.level.enemies.forEach((enemy) => {
             if (this.character.isJumpedOn(enemy)) {
-                this.enemies.splice(this.enemies.indexOf(enemy), 1);
+                this.level.enemies.splice(this.level.enemies.indexOf(enemy), 1);
+                enemy.audio['jumped_on_sound'].volume = 0.2;
+                enemy.audio['jumped_on_sound'].play();
+                //this.character.speedY = 10;
             }
         });
     }
+
+    killByBottle(){
+        this.level.enemies.forEach((enemy) => {
+            if (this.level.bottles.isColliding(enemy)) {
+                this.level.enemies.splice(this.level.enemies.indexOf(enemy), 1);
+                
+            }
+        });
+    }
+
+
+    collectBottles(){
+        this.level.bottles.forEach((bottle) => {
+            if (this.character.isColliding(bottle)) {
+                this.level.bottles.splice(this.level.bottles.indexOf(bottle), 1);
+                this.collectedBottles++;
+                this.statusBarFlasks.setPercentage(this.collectedBottles)
+                console.log(this.collectedBottles + ' bottles')
+            }
+        });
+    }
+
+    collectCoins(){
+        this.level.coins.forEach((coin) => {
+            if (this.character.isColliding(coin)) {
+                this.level.coins.splice(this.level.coins.indexOf(coin), 1);
+                this.collectedCoins++;
+                coin.audio['collect_coin_sound'].play();
+                //console.log(this.collectedCoins + ' coins')
+            }
+        });
+    }
+
 
     stopGame(){
         for (let i = 0; i < intervalIds.length; i++) {
