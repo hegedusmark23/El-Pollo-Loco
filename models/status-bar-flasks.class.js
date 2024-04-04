@@ -1,6 +1,5 @@
 
 class StatusBarFlasks extends DrawableObject {
-    percentage = 100;
     IMAGES_FLASKS = [
         'img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/0.png',
         'img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/20.png',
@@ -29,13 +28,13 @@ class StatusBarFlasks extends DrawableObject {
     resolveImageIndex(){
         if (this.percentage == 0) {
             return 0;
-        } else if (this.percentage > 20) {
+        } else if (this.percentage == 1) {
             return 1;
-        } else if (this.percentage > 40) {
+        } else if (this.percentage == 2) {
             return 2;
-        } else if (this.percentage > 60) {
+        } else if (this.percentage == 3) {
             return 3;
-        } else if (this.percentage > 80) {
+        } else if (this.percentage == 4) {
             return 4;
         } else {
             return 5;

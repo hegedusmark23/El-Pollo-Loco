@@ -29,7 +29,6 @@ class ThrowableObject extends MoveableObject {
         this.y = y;
         this.height = 80;
         this.width = 70;
-        
         this.throw();
         this.animate();
 
@@ -38,8 +37,7 @@ class ThrowableObject extends MoveableObject {
     throw() {
         this.speedY = 15;
         this.applyGravity();
-        this.audio['throw_sound'].volume = 0.1;
-        this.audio['throw_sound'].play();
+        
         setInterval(() => {
             this.x += 8;
         }, 25);

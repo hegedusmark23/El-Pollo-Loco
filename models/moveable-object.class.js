@@ -57,9 +57,9 @@ class MoveableObject extends DrawableObject {
 
     isJumpedOn(mo) {
         return this.x + this.width > mo.x &&
-         this.y + this.height <= mo.y  &&
-         this.x < mo.x + mo.width &&
-         this.y < mo.y + mo.height + mo.offset.bottom
+         this.y + this.height <= mo.y + mo.offset.top &&
+         this.x < mo.x + mo.width  &&
+         this.y < mo.y + mo.height - mo.offset.bottom
     }
 
 

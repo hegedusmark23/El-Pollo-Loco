@@ -6,9 +6,9 @@ class Chicken extends MoveableObject {
     isJumpedOn = false;
     offset = {
         top: 40,
-        left: 40,
-        right: 40,
-        bottom: 40,
+        left: 0,
+        right: 0,
+        bottom: 10,
     }
     IMAGES_WALKING = [
         'img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',

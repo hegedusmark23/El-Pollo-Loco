@@ -2,6 +2,7 @@
 class World {
 
     character = new Character();
+    bottle = new ThrowableObject();
     level = level1;
     ctx;
     canvas;
@@ -31,7 +32,7 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollisions();
-            
+            this.killByBottle();
             this.killByJump();
             
         }, 600);
@@ -53,8 +54,14 @@ class World {
 
     checkThrowObjects() {
         if (this.keyboard.D) {
-            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100)
-            this.throwableObjects.push(bottle)
+            if (this.collectedBottles >= 1) {
+                let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100)
+                this.bottle.audio['throw_sound'].volume = 0.2;
+                this.bottle.audio['throw_sound'].play();
+                this.collectedBottles--;
+                this.statusBarFlasks.setPercentage(this.collectedBottles)
+                this.throwableObjects.push(bottle)
+            }
         }
     }
 
@@ -71,9 +78,8 @@ class World {
 
     killByBottle(){
         this.level.enemies.forEach((enemy) => {
-            if (this.level.bottles.isColliding(enemy)) {
+            if (this.bottle.isColliding(enemy)) {
                 this.level.enemies.splice(this.level.enemies.indexOf(enemy), 1);
-                
             }
         });
     }
@@ -82,10 +88,12 @@ class World {
     collectBottles(){
         this.level.bottles.forEach((bottle) => {
             if (this.character.isColliding(bottle)) {
-                this.level.bottles.splice(this.level.bottles.indexOf(bottle), 1);
-                this.collectedBottles++;
-                this.statusBarFlasks.setPercentage(this.collectedBottles)
-                console.log(this.collectedBottles + ' bottles')
+                if (this.collectedBottles < 5) {
+                    this.level.bottles.splice(this.level.bottles.indexOf(bottle), 1);
+                    this.collectedBottles++;
+                    bottle.audio['item_pickup_sound'].play();
+                    this.statusBarFlasks.setPercentage(this.collectedBottles)
+                }
             }
         });
     }
@@ -95,8 +103,8 @@ class World {
             if (this.character.isColliding(coin)) {
                 this.level.coins.splice(this.level.coins.indexOf(coin), 1);
                 this.collectedCoins++;
+                this.statusBarCoins.setPercentage(this.collectedCoins)
                 coin.audio['collect_coin_sound'].play();
-                //console.log(this.collectedCoins + ' coins')
             }
         });
     }

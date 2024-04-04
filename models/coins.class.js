@@ -2,9 +2,9 @@ class Coins extends MoveableObject {
     height = 120;
     width = 120;
     offset = {
-        top: 60,
-        left: 60,
-        right: 60,
+        top: 30,
+        left: 40,
+        right: 70,
         bottom: 60,
     }
     IMAGES_COIN = [
@@ -18,6 +18,7 @@ class Coins extends MoveableObject {
 
     constructor(x, y) {
         super().loadImage('img/8_coin/coin_1.png');
+        this.AudioToArray(this.audio);
         this.loadImages(this.IMAGES_COIN);
         this.animate();
         this.x = x;

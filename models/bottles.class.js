@@ -3,15 +3,18 @@ class Bottles extends MoveableObject {
     height = 80;
     width = 80;
     offset = {
-        top: 60,
-        left: 60,
-        right: 60,
-        bottom: 60,
+        top: 10,
+        left: 30,
+        right: 30,
+        bottom: 10,
     }
     IMAGES_BOTTLE = [
         'img/6_salsa_bottle/1_salsa_bottle_on_ground.png',
         'img/6_salsa_bottle/2_salsa_bottle_on_ground.png'
     ]
+    audio = {
+        item_pickup_sound : new Audio('audio/item-pickup.mp3')
+    }
     
     bottlesImg = this.IMAGES_BOTTLE[Math.floor(Math.random()*this.IMAGES_BOTTLE.length)];
 
