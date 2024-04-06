@@ -2,7 +2,7 @@
 class World {
 
     character = new Character();
-    bottle = new ThrowableObject();
+    bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
     level = level1;
     ctx;
     canvas;
@@ -14,7 +14,7 @@ class World {
     collectedCoins = 0;
     collectedBottles = 0;
     throwableObjects = [];
-   
+
 
 
     constructor(canvas, keyboard) {
@@ -34,13 +34,13 @@ class World {
             this.checkCollisions();
             this.killByBottle();
             this.killByJump();
-            
+
         }, 600);
         setInterval(() => {
-          this.checkThrowObjects();
-          this.collectCoins();  
-          this.collectBottles();
-        },100);
+            this.checkThrowObjects();
+            this.collectCoins();
+            this.collectBottles();
+        }, 100);
     }
 
     checkCollisions() {
@@ -65,10 +65,13 @@ class World {
         }
     }
 
-    killByJump(){
+    killByJump() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isJumpedOn(enemy)) {
-                this.level.enemies.splice(this.level.enemies.indexOf(enemy), 1);
+                enemy.isJumpedOn = true;
+                setTimeout(() => {
+                    this.level.enemies.splice(this.level.enemies.indexOf(enemy), 1);
+                }, 500);
                 enemy.audio['jumped_on_sound'].volume = 0.2;
                 enemy.audio['jumped_on_sound'].play();
                 //this.character.speedY = 10;
@@ -76,7 +79,7 @@ class World {
         });
     }
 
-    killByBottle(){
+    killByBottle() {
         this.level.enemies.forEach((enemy) => {
             if (this.bottle.isColliding(enemy)) {
                 this.level.enemies.splice(this.level.enemies.indexOf(enemy), 1);
@@ -85,7 +88,7 @@ class World {
     }
 
 
-    collectBottles(){
+    collectBottles() {
         this.level.bottles.forEach((bottle) => {
             if (this.character.isColliding(bottle)) {
                 if (this.collectedBottles < 5) {
@@ -98,7 +101,7 @@ class World {
         });
     }
 
-    collectCoins(){
+    collectCoins() {
         this.level.coins.forEach((coin) => {
             if (this.character.isColliding(coin)) {
                 this.level.coins.splice(this.level.coins.indexOf(coin), 1);
@@ -110,7 +113,7 @@ class World {
     }
 
 
-    stopGame(){
+    stopGame() {
         for (let i = 0; i < intervalIds.length; i++) {
             const id = intervalIds[i];
             this.clearInterval(id)
@@ -154,7 +157,7 @@ class World {
             this.flipImage(mo);
         }
         mo.draw(this.ctx)
-        mo.drawFrame(this.ctx)
+        //mo.drawFrame(this.ctx)
         if (mo.otherDirection) {
             this.flipImageBack(mo);
         }

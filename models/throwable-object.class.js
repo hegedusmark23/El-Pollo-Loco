@@ -1,9 +1,12 @@
 
 class ThrowableObject extends MoveableObject {
     audio = {
-        throw_sound: new Audio('audio/throw.mp3')
+        throw_sound: new Audio('audio/throw.mp3'),
+        bottle_shatter_sound : new Audio('audio/bottle-shatter.mp3')
     }
 
+    splash = false;
+    throw_direction = false;
     IMAGES_THROW = [
         'img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
         'img/6_salsa_bottle/bottle_rotation/2_bottle_rotation.png',
@@ -37,16 +40,36 @@ class ThrowableObject extends MoveableObject {
     throw() {
         this.speedY = 15;
         this.applyGravity();
-        
+        this.splash = true;
         setInterval(() => {
-            this.x += 8;
+            if (world.character.otherDirection == false) {
+                this.x += 8;
+            } else if (this.throwDirection = true) {
+                this.x -= 8;
+            }
         }, 25);
 
     }
 
+    throwDirection(){
+        if (world.character.otherDirection == true) {
+            throwDirection = true;
+        } else if (this.throw()) {
+            throwDirection = false;
+        }
+    }
+
+
     animate() {
         setInterval(() => {
             this.playAnimation(this.IMAGES_THROW);
+            if (this.isOnGround() && this.splash == true) {
+                this.playAnimation(this.IMAGES_SPLASH);
+                //this.audio['bottle_shatter_sound'].play();
+                this.splash = false;
+            }
         }, 1000 / 20);
+
+        
     }
 }

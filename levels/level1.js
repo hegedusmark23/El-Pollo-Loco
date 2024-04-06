@@ -65,14 +65,14 @@ level1 = new Level(
     ],
 
     [
-        new Bottles(300, 360),
-        new Bottles(700, 360),
-        new Bottles(800, 360),
-        new Bottles(1400, 360),
-        new Bottles(1600, 360),
-        new Bottles(2000, 360),
-        new Bottles(2200, 360),
-        new Bottles(2800, 360),
+        new Bottles(300, 350),
+        new Bottles(700, 350),
+        new Bottles(800, 350),
+        new Bottles(1400, 350),
+        new Bottles(1600, 350),
+        new Bottles(2000, 350),
+        new Bottles(2200, 350),
+        new Bottles(2800, 350),
     ]
 );
 }

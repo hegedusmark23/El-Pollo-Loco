@@ -49,19 +49,18 @@ class MoveableObject extends DrawableObject {
 
 
     isColliding(mo) {
-        return this.x + this.width > mo.x + mo.offset.left &&
-            this.y + this.height > mo.y + mo.offset.top &&
-            this.x < mo.x + mo.width + mo.offset.right &&
-            this.y < mo.y + mo.height + mo.offset.bottom
+        return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
+            this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
+            this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
+            this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom
     }
 
     isJumpedOn(mo) {
-        return this.x + this.width > mo.x &&
-         this.y + this.height <= mo.y + mo.offset.top &&
-         this.x < mo.x + mo.width  &&
-         this.y < mo.y + mo.height - mo.offset.bottom
+        return this.x + this.width - this.offset.right >= mo.x + mo.offset.left &&
+        this.y + this.height - this.offset.bottom <= mo.y + mo.offset.top &&
+        this.x + this.offset.left <= mo.x + mo.width - mo.offset.right &&
+        this.y + this.offset.top <= mo.y + mo.height - mo.offset.bottom 
     }
-
 
     /**
      * Defines if the character above Ground is.
@@ -72,6 +71,10 @@ class MoveableObject extends DrawableObject {
         } else {
             return this.y < 180;
         }
+    }
+
+    isOnGround(){
+        return this.y >= 350
     }
 
 
@@ -98,6 +101,9 @@ class MoveableObject extends DrawableObject {
         this.x += this.speed;
     }
 
+    doNotMove(){
+        this.x += 0;
+    }
 
     moveLeft() {
         this.x -= this.speed;
