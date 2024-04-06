@@ -14,6 +14,10 @@ class World {
     collectedCoins = 0;
     collectedBottles = 0;
     throwableObjects = [];
+    winOverlay = new Overlays(0,0,'img/9_intro_outro_screens/game_over/game over!.png');
+    didWin = false;
+    loseOverlay = new Overlays(0,0,'img/9_intro_outro_screens/game_over/you lost.png');
+    didLose = false;
 
 
 
@@ -24,6 +28,7 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
+        
     }
 
     /**
@@ -34,14 +39,31 @@ class World {
             this.checkCollisions();
             this.killByBottle();
             this.killByJump();
-
         }, 600);
         setInterval(() => {
             this.checkThrowObjects();
             this.collectCoins();
             this.collectBottles();
         }, 100);
+        this.checkIfWinOrLose();
+        this.addOverlay();
     }
+
+
+    addOverlay(){
+        if (this.didLose == true) {
+            this.addToMap(this.loseOverlay);
+        }
+    }
+
+
+    checkIfWinOrLose(){
+        if (this.character.energy == 0) {
+            this.didLose = true;
+            console.log(this.character.energy);
+        } 
+    }
+
 
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
@@ -51,6 +73,7 @@ class World {
             }
         });
     }
+
 
     checkThrowObjects() {
         if (this.keyboard.D) {
@@ -65,6 +88,7 @@ class World {
         }
     }
 
+
     killByJump() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isJumpedOn(enemy)) {
@@ -78,6 +102,7 @@ class World {
             }
         });
     }
+
 
     killByBottle() {
         this.level.enemies.forEach((enemy) => {
@@ -101,6 +126,7 @@ class World {
         });
     }
 
+
     collectCoins() {
         this.level.coins.forEach((coin) => {
             if (this.character.isColliding(coin)) {
@@ -119,6 +145,7 @@ class World {
             this.clearInterval(id)
         }
     }
+
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -152,6 +179,7 @@ class World {
         });
     }
 
+
     addToMap(mo) {
         if (mo.otherDirection) {
             this.flipImage(mo);
@@ -163,6 +191,7 @@ class World {
         }
     }
 
+
     flipImage(mo) {
         this.ctx.save();
         this.ctx.translate(mo.width, 0);
@@ -171,10 +200,12 @@ class World {
 
     }
 
+
     flipImageBack(mo) {
         mo.x = mo.x * -1;
         this.ctx.restore();
     }
+
 
     setWorld() {
         this.character.world = this;

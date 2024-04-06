@@ -2,9 +2,8 @@
 class ThrowableObject extends MoveableObject {
     audio = {
         throw_sound: new Audio('audio/throw.mp3'),
-        bottle_shatter_sound : new Audio('audio/bottle-shatter.mp3')
+        bottle_shatter_sound: new Audio('audio/bottle-shatter.mp3')
     }
-
     splash = false;
     throw_direction = false;
     IMAGES_THROW = [
@@ -51,7 +50,7 @@ class ThrowableObject extends MoveableObject {
 
     }
 
-    throwDirection(){
+    throwDirection() {
         if (world.character.otherDirection == true) {
             throwDirection = true;
         } else if (this.throw()) {
@@ -70,6 +69,6 @@ class ThrowableObject extends MoveableObject {
             }
         }, 1000 / 20);
 
-        
+
     }
 }
