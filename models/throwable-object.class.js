@@ -4,8 +4,13 @@ class ThrowableObject extends MoveableObject {
         throw_sound: new Audio('audio/throw.mp3'),
         bottle_shatter_sound: new Audio('audio/bottle-shatter.mp3')
     }
+    offset = {
+        top: -10,
+        left: -10,
+        right: -10,
+        bottom: -10,
+    }
     splash = false;
-    throw_direction = false;
     IMAGES_THROW = [
         'img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
         'img/6_salsa_bottle/bottle_rotation/2_bottle_rotation.png',
@@ -22,7 +27,7 @@ class ThrowableObject extends MoveableObject {
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png'
     ]
 
-    constructor(x, y) {
+    constructor(x, y, check_if_threw, throw_direction) {
         super().loadImage('img/6_salsa_bottle/salsa_bottle.png');
         this.AudioToArray(this.audio);
         this.loadImages(this.IMAGES_THROW)
@@ -31,7 +36,9 @@ class ThrowableObject extends MoveableObject {
         this.y = y;
         this.height = 80;
         this.width = 70;
-        //this.checkIfThrew();
+        this.check_if_threw = check_if_threw;
+        this.throw_direction = throw_direction;
+        this.checkIfThrew();
         this.throw();
         this.animate();
         
@@ -41,17 +48,16 @@ class ThrowableObject extends MoveableObject {
         this.speedY = 15;
         this.applyGravity();
         setInterval(() => {
-            if (world.character.otherDirection == false) {
+            if (this.throw_direction == 'right') {
                 this.x += 8;
-            } else if (world.character.otherDirection == true) {
+            } else if (this.throw_direction == 'left') {
                 this.x -= 8;
             }
         }, 25);
-        console.log(this.splash)
     }
 
     checkIfThrew() {
-        if (check_if_threw == true) {
+        if (this.check_if_threw == true) {
             this.splash = true;
         }
     }

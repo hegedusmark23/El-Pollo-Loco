@@ -2,7 +2,7 @@
 class World {
 
     character = new Character();
-    bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
+    bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100, this.check_if_threw);
     endboss = new Endboss();
     level = level1;
     ctx;
@@ -37,8 +37,8 @@ class World {
     run() {
         let interval = setInterval(() => {
             this.checkCollisions();
-            this.killByBottle();
             this.killByJump();
+            this.killByBottle();
         }, 600);
         let interval2 = setInterval(() => {
             this.checkThrowObjects();
@@ -85,8 +85,9 @@ class World {
     checkThrowObjects() {
         if (this.keyboard.D) {
             if (this.collectedBottles >= 1) {
-                check_if_threw  = true;
-                let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100)
+                this.check_if_threw  = true;
+                let throw_direction = this.character.otherDirection ? 'left' : 'right';
+                let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100, this.check_if_threw, throw_direction);
                 this.bottle.audio['throw_sound'].volume = 0.2;
                 this.bottle.audio['throw_sound'].play();
                 this.collectedBottles--;
@@ -117,11 +118,17 @@ class World {
     killByBottle() {
         this.level.enemies.forEach((enemy) => {
             if (this.bottle.isColliding(enemy)) {
-                this.level.enemies.splice(this.level.enemies.indexOf(enemy), 1);
+                enemy.isJumpedOn = true;
+                if (this instanceof Chick || this instanceof Chicken) {
+                    setTimeout(() => {
+                        this.level.enemies.splice(this.level.enemies.indexOf(enemy), 1);
+                    }, 500);
+                    enemy.audio['jumped_on_sound'].volume = 0.2;
+                    enemy.audio['jumped_on_sound'].play();
+                }
             }
         });
     }
-
 
     collectBottles() {
         this.level.bottles.forEach((bottle) => {
