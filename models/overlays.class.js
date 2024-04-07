@@ -1,13 +1,11 @@
 
-class Overlays extends DrawableObject {
+class Overlay extends DrawableObject {
 
-    width = 720;
-    height = 480;
-
-    constructor(x,y,img){
-        super();
+    constructor(path, x, y) {
+        super().loadImage(path, x, y);
         this.x = x;
         this.y = y;
-        this.img = img;
+        this.width = 720;
+        this.height = 480;
     }
 }

@@ -165,3 +165,19 @@ table {
 .padding-right {
     padding-right: 40px;
 }
+
+.restart-button-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: end;
+}
+
+.margin-bottom {
+    margin-bottom: 20px;
+}

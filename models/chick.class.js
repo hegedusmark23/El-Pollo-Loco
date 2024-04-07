@@ -3,6 +3,7 @@ class Chick extends MoveableObject {
     width = 40;
     y = 360;
     isJumpedOn = false;
+    energy = 20;
     offset = {
         top: 0,
         left: 0,
@@ -20,7 +21,7 @@ class Chick extends MoveableObject {
     ]
 
     audio = {
-        jumped_on_sound : new Audio('audio/chick.mp3')
+        jumped_on_sound: new Audio('audio/chick.mp3')
     }
 
     constructor() {
@@ -35,7 +36,7 @@ class Chick extends MoveableObject {
     }
 
     animate() {
-        setInterval(() => {
+        let interval = setInterval(() => {
             if (this.isJumpedOn == false) {
                 this.moveLeft()
             } else {
@@ -43,15 +44,15 @@ class Chick extends MoveableObject {
             }
         }, 1000 / 60);
 
-        setInterval(() => {
+        let interval2 = setInterval(() => {
             if (this.isJumpedOn == false) {
                 this.playAnimation(this.IMAGES_WALKING);
             } else {
                 this.playAnimation(this.IMAGE_DEAD);
             }
         }, 1000 / 8);
-
+        intervalIds.push(interval, interval2);
     }
-    
+
 
 }

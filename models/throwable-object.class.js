@@ -31,44 +31,42 @@ class ThrowableObject extends MoveableObject {
         this.y = y;
         this.height = 80;
         this.width = 70;
+        //this.checkIfThrew();
         this.throw();
         this.animate();
-
+        
     }
 
     throw() {
         this.speedY = 15;
         this.applyGravity();
-        this.splash = true;
         setInterval(() => {
             if (world.character.otherDirection == false) {
                 this.x += 8;
-            } else if (this.throwDirection = true) {
+            } else if (world.character.otherDirection == true) {
                 this.x -= 8;
             }
         }, 25);
-
+        console.log(this.splash)
     }
 
-    throwDirection() {
-        if (world.character.otherDirection == true) {
-            throwDirection = true;
-        } else if (this.throw()) {
-            throwDirection = false;
+    checkIfThrew() {
+        if (check_if_threw == true) {
+            this.splash = true;
         }
     }
 
 
+
     animate() {
-        setInterval(() => {
+        let interval = setInterval(() => {
             this.playAnimation(this.IMAGES_THROW);
             if (this.isOnGround() && this.splash == true) {
                 this.playAnimation(this.IMAGES_SPLASH);
-                //this.audio['bottle_shatter_sound'].play();
+                this.audio['bottle_shatter_sound'].play();
                 this.splash = false;
             }
         }, 1000 / 20);
-
-
+        intervalIds.push(interval);
     }
 }

@@ -13,12 +13,11 @@ class Bottles extends MoveableObject {
         'img/6_salsa_bottle/2_salsa_bottle_on_ground.png'
     ]
     audio = {
-        item_pickup_sound : new Audio('audio/item-pickup.mp3'),
+        item_pickup_sound: new Audio('audio/item-pickup.mp3'),
     }
-    
-    bottlesImg = this.IMAGES_BOTTLE[Math.floor(Math.random()*this.IMAGES_BOTTLE.length)];
+    bottlesImg = this.IMAGES_BOTTLE[Math.floor(Math.random() * this.IMAGES_BOTTLE.length)];
 
-    constructor(x, y){
+    constructor(x, y) {
         super().loadImage(this.bottlesImg);
         this.AudioToArray(this.audio);
         this.x = x;
@@ -27,8 +26,8 @@ class Bottles extends MoveableObject {
     }
 
     animate() {
-        let increasing = true; 
-        setInterval(() => {
+        let increasing = true;
+        let interval = setInterval(() => {
             if (increasing) {
                 this.y += 3;
                 if (this.y >= 363) {
@@ -41,6 +40,7 @@ class Bottles extends MoveableObject {
                 }
             }
         }, 300);
+        intervalIds.push(interval);
     }
 
 }

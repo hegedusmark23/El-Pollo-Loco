@@ -4,6 +4,7 @@ class Chicken extends MoveableObject {
     width = 60;
     y = 360;
     isJumpedOn = false;
+    energy = 20;
     offset = {
         top: 10,
         left: 0,
@@ -36,7 +37,7 @@ class Chicken extends MoveableObject {
     }
 
     animate() {
-        setInterval(() => {
+        let interval = setInterval(() => {
             if (this.isJumpedOn == false) {
                 this.moveLeft()
             } else {
@@ -44,14 +45,14 @@ class Chicken extends MoveableObject {
             }
         }, 1000 / 60);
 
-        setInterval(() => {
+        let interval2 = setInterval(() => {
             if (this.isJumpedOn == false) {
                 this.playAnimation(this.IMAGES_WALKING);
             } else {
                 this.playAnimation(this.IMAGE_DEAD);
             }
         }, 1000 / 8);
-
+        intervalIds.push(interval, interval2);
     }
 
 }

@@ -5,11 +5,12 @@ class Character extends MoveableObject {
     y = 180;
     x = 100;
     speed = 5;
+    energy = 100;
     offset = {
-        top: 50,
+        top: 60,
         left: 40,
         right: 70,
-        bottom: 10
+        bottom: 20
     }
 
     IMAGES_WALKING = [
@@ -100,7 +101,7 @@ class Character extends MoveableObject {
 
     animate() {
 
-        setInterval(() => {
+        let interval = setInterval(() => {
             this.audio['walking_sound'].pause();
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
@@ -125,7 +126,7 @@ class Character extends MoveableObject {
             this.world.camera_x = -this.x + 100;
         }, 1000 / 60);
 
-        setInterval(() => {
+        let interval2 = setInterval(() => {
 
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD)
@@ -141,6 +142,7 @@ class Character extends MoveableObject {
                 }
             }
         }, 100);
+        intervalIds.push(interval, interval2);
     }
 }
 

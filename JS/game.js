@@ -57,6 +57,11 @@ function toggleControls(){
     }
 }
 
+function revealObject(id){
+    let button = document.getElementById(id);
+    button.classList.remove('d-none')
+    button.classList.add('d-flex')
+}
 
 function toggleMuteAudio(){
      if (isMuted == false) {
@@ -74,6 +79,10 @@ function toggleMuteAudio(){
 function playBackgoundMusic() {
     background_music.play();
     background_music.volume = 0.02;
+}
+
+function reloadPage(){
+    location.reload();
 }
 
 

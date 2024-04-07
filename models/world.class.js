@@ -3,6 +3,7 @@ class World {
 
     character = new Character();
     bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
+    endboss = new Endboss();
     level = level1;
     ctx;
     canvas;
@@ -14,11 +15,11 @@ class World {
     collectedCoins = 0;
     collectedBottles = 0;
     throwableObjects = [];
-    winOverlay = new Overlays(0,0,'img/9_intro_outro_screens/game_over/game over!.png');
+    winOverlay = new Overlay('img/9_intro_outro_screens/game_over/game over!.png', 0, 0);
     didWin = false;
-    loseOverlay = new Overlays(0,0,'img/9_intro_outro_screens/game_over/you lost.png');
+    loseOverlay = new Overlay('img/9_intro_outro_screens/game_over/you lost.png', 0, 0);
     didLose = false;
-
+    check_if_threw = false;
 
 
     constructor(canvas, keyboard) {
@@ -28,40 +29,46 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
-        
     }
 
     /**
      * Checks if objects collide with eachother.
      */
     run() {
-        setInterval(() => {
+        let interval = setInterval(() => {
             this.checkCollisions();
             this.killByBottle();
             this.killByJump();
         }, 600);
-        setInterval(() => {
+        let interval2 = setInterval(() => {
             this.checkThrowObjects();
             this.collectCoins();
             this.collectBottles();
+            this.checkIfWinOrLose();
         }, 100);
-        this.checkIfWinOrLose();
-        this.addOverlay();
+        intervalIds.push(interval, interval2)
     }
 
 
-    addOverlay(){
-        if (this.didLose == true) {
+    addOverlay() {
+        if (this.didLose) {
+            this.stopGame();
             this.addToMap(this.loseOverlay);
+            revealObject('restart-button');
+        } else if (this.didWin) {
+            this.stopGame();
+            this.addToMap(this.winOverlay);
+            revealObject('restart-button');
         }
     }
 
 
-    checkIfWinOrLose(){
+    checkIfWinOrLose() {
         if (this.character.energy == 0) {
             this.didLose = true;
-            console.log(this.character.energy);
-        } 
+        } else if (this.endboss.energy == 0){
+            this.didWin = true;
+        }
     }
 
 
@@ -78,6 +85,7 @@ class World {
     checkThrowObjects() {
         if (this.keyboard.D) {
             if (this.collectedBottles >= 1) {
+                check_if_threw  = true;
                 let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100)
                 this.bottle.audio['throw_sound'].volume = 0.2;
                 this.bottle.audio['throw_sound'].play();
@@ -98,7 +106,9 @@ class World {
                 }, 500);
                 enemy.audio['jumped_on_sound'].volume = 0.2;
                 enemy.audio['jumped_on_sound'].play();
-                //this.character.speedY = 10;
+                if (this.character.y > 70) {
+                    this.character.speedY = 10;
+                }
             }
         });
     }
@@ -142,24 +152,26 @@ class World {
     stopGame() {
         for (let i = 0; i < intervalIds.length; i++) {
             const id = intervalIds[i];
-            this.clearInterval(id)
+            clearInterval(id)
         }
     }
 
 
     draw() {
+        // Clear frame.
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
+        // Dynamic objects.
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backgrounds);
         this.addObjectsToMap(this.level.clouds);
-
+        // Static objects.
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
         this.addToMap(this.statusBarFlasks);
         this.addToMap(this.statusBarCoins);
+        this.addOverlay();
         this.ctx.translate(this.camera_x, 0);
-
+        // Dynamic objects.
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.throwableObjects)
@@ -185,7 +197,7 @@ class World {
             this.flipImage(mo);
         }
         mo.draw(this.ctx)
-        //mo.drawFrame(this.ctx)
+        mo.drawFrame(this.ctx)
         if (mo.otherDirection) {
             this.flipImageBack(mo);
         }
