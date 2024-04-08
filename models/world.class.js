@@ -1,8 +1,7 @@
 
 class World {
-
+    bottle = new ThrowableObject();
     character = new Character();
-    bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100, this.check_if_threw);
     endboss = new Endboss();
     level = level1;
     ctx;
@@ -66,7 +65,7 @@ class World {
     checkIfWinOrLose() {
         if (this.character.energy == 0) {
             this.didLose = true;
-        } else if (this.endboss.energy == 0){
+        } else if (this.endboss.energy == 0) {
             this.didWin = true;
         }
     }
@@ -85,11 +84,10 @@ class World {
     checkThrowObjects() {
         if (this.keyboard.D) {
             if (this.collectedBottles >= 1) {
-                this.check_if_threw  = true;
+                this.check_if_threw = true;
                 let throw_direction = this.character.otherDirection ? 'left' : 'right';
                 let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100, this.check_if_threw, throw_direction);
-                this.bottle.audio['throw_sound'].volume = 0.2;
-                this.bottle.audio['throw_sound'].play();
+                this.playAudio(bottle,'throw_sound', 0.2)
                 this.collectedBottles--;
                 this.statusBarFlasks.setPercentage(this.collectedBottles)
                 this.throwableObjects.push(bottle)
@@ -105,29 +103,34 @@ class World {
                 setTimeout(() => {
                     this.level.enemies.splice(this.level.enemies.indexOf(enemy), 1);
                 }, 500);
-                enemy.audio['jumped_on_sound'].volume = 0.2;
-                enemy.audio['jumped_on_sound'].play();
-                if (this.character.y > 70) {
+                this.playAudio(enemy,'jumped_on_sound', 0.2)
+                /*if (this.character.y > 70) {
                     this.character.speedY = 10;
-                }
+                }*/
             }
         });
     }
 
 
     killByBottle() {
-        this.level.enemies.forEach((enemy) => {
-            if (this.bottle.isColliding(enemy)) {
-                enemy.isJumpedOn = true;
-                if (this instanceof Chick || this instanceof Chicken) {
-                    setTimeout(() => {
-                        this.level.enemies.splice(this.level.enemies.indexOf(enemy), 1);
-                    }, 500);
-                    enemy.audio['jumped_on_sound'].volume = 0.2;
-                    enemy.audio['jumped_on_sound'].play();
+        this.throwableObjects.forEach((bottle, indexBottle) => {
+            this.level.enemies.forEach((enemy) => {
+                if (this.bottleCollidingEnemy(enemy, indexBottle)) {
+                    enemy.isJumpedOn = true;
+                    enemy.energy -= 20;
+                    if (this instanceof Chick ||  this instanceof Chicken) {
+                        setTimeout(() => {
+                            this.level.enemies.splice(this.level.enemies.indexOf(enemy), 1);
+                        }, 500);
+                    }
+                    this.playAudio(enemy,'jumped_on_sound', 0.2)
                 }
-            }
+            });
         });
+    }
+
+    bottleCollidingEnemy(enemy, indexBottle) {
+        return this.throwableObjects[indexBottle].isColliding(enemy);
     }
 
     collectBottles() {
@@ -136,7 +139,7 @@ class World {
                 if (this.collectedBottles < 5) {
                     this.level.bottles.splice(this.level.bottles.indexOf(bottle), 1);
                     this.collectedBottles++;
-                    bottle.audio['item_pickup_sound'].play();
+                    this.playAudio(bottle,'item_pickup_sound', 1)
                     this.statusBarFlasks.setPercentage(this.collectedBottles)
                 }
             }
@@ -150,9 +153,14 @@ class World {
                 this.level.coins.splice(this.level.coins.indexOf(coin), 1);
                 this.collectedCoins++;
                 this.statusBarCoins.setPercentage(this.collectedCoins)
-                coin.audio['collect_coin_sound'].play();
+                this.playAudio(coin,'collect_coin_sound', 1)
             }
         });
+    }
+
+    playAudio(obj, audio, volume) {
+        obj.audio[audio].volume = volume;
+        obj.audio[audio].play();
     }
 
 
