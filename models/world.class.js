@@ -11,6 +11,7 @@ class World {
     statusBar = new StatusBar();
     statusBarCoins = new StatusBarCoins();
     statusBarFlasks = new StatusBarFlasks();
+    statusBarEndboss = new StatusBarEndboss();
     collectedCoins = 0;
     collectedBottles = 0;
     throwableObjects = [];
@@ -55,9 +56,9 @@ class World {
             this.addToMap(this.loseOverlay);
             revealObject('restart-button');
         } else if (this.didWin) {
-            this.stopGame();
-            this.addToMap(this.winOverlay);
-            revealObject('restart-button');
+                //this.stopGame();
+                //this.addToMap(this.winOverlay); 
+                revealObject('restart-button');
         }
     }
 
@@ -117,16 +118,22 @@ class World {
             this.level.enemies.forEach((enemy) => {
                 if (this.bottleCollidingEnemy(enemy, indexBottle)) {
                     enemy.isJumpedOn = true;
-                    enemy.energy -= 20;
-                    if (this instanceof Chick ||  this instanceof Chicken) {
-                        setTimeout(() => {
-                            this.level.enemies.splice(this.level.enemies.indexOf(enemy), 1);
-                        }, 500);
-                    }
-                    this.playAudio(enemy,'jumped_on_sound', 0.2)
+                    this.checkIfChickenOrBoss();
+                    this.playAudio(enemy,'jumped_on_sound', 0.2);
                 }
             });
         });
+    }
+
+    checkIfChickenOrBoss(){
+        if (this instanceof Chick ||  this instanceof Chicken) {
+            setTimeout(() => {
+                this.level.enemies.splice(this.level.enemies.indexOf(enemy), 1);
+            }, 500);
+        } else {
+            this.endboss.energy -= 20;
+            this.statusBarEndboss.setPercentage(this.endboss.energy);
+        }
     }
 
     bottleCollidingEnemy(enemy, indexBottle) {
@@ -184,6 +191,7 @@ class World {
         this.addToMap(this.statusBar);
         this.addToMap(this.statusBarFlasks);
         this.addToMap(this.statusBarCoins);
+        this.addToMap(this.statusBarEndboss);
         this.addOverlay();
         this.ctx.translate(this.camera_x, 0);
         // Dynamic objects.
