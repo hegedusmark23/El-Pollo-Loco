@@ -62,6 +62,10 @@ class ThrowableObject extends MoveableObject {
         }
     }
 
+    checkIfCollidingWithBoss(){
+
+    }
+
 
 
     animate() {
@@ -71,6 +75,9 @@ class ThrowableObject extends MoveableObject {
                 this.playAnimation(this.IMAGES_SPLASH);
                 this.audio['bottle_shatter_sound'].play();
                 this.splash = false;
+                setTimeout(() => {
+                    world.throwableObjects.splice(0,1);
+                }, 100);
             }
         }, 1000 / 20);
         intervalIds.push(interval);
