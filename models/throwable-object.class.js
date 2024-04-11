@@ -5,10 +5,10 @@ class ThrowableObject extends MoveableObject {
         bottle_shatter_sound: new Audio('audio/bottle-shatter.mp3')
     }
     offset = {
-        top: -10,
-        left: -10,
-        right: -10,
-        bottom: -10,
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0
     }
     splash = false;
     IMAGES_THROW = [
@@ -49,9 +49,9 @@ class ThrowableObject extends MoveableObject {
         this.applyGravity();
         setInterval(() => {
             if (this.throw_direction == 'right') {
-                this.x += 8;
+                this.x += 5;
             } else if (this.throw_direction == 'left') {
-                this.x -= 8;
+                this.x -= 5;
             }
         }, 25);
     }
@@ -62,24 +62,22 @@ class ThrowableObject extends MoveableObject {
         }
     }
 
-    checkIfCollidingWithBoss(){
-
-    }
-
 
 
     animate() {
         let interval = setInterval(() => {
             this.playAnimation(this.IMAGES_THROW);
-            if (this.isOnGround() && this.splash == true) {
+            if (this.isOnGround() && this.splash == true || world.isCollidingWithBoss) {
+                clearInterval(interval); // Clear the interval first
                 this.playAnimation(this.IMAGES_SPLASH);
                 this.audio['bottle_shatter_sound'].play();
                 this.splash = false;
+                world.isCollidingWithBoss = false;
                 setTimeout(() => {
-                    world.throwableObjects.splice(0,1);
+                    world.throwableObjects.splice(0, 1);
                 }, 100);
             }
-        }, 1000 / 20);
+        }, 1000 / 15);
         intervalIds.push(interval);
     }
 }

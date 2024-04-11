@@ -23,6 +23,7 @@ class World {
     didLose = false;
     check_if_threw = false;
     isAtBoss = false;
+    isCollidingWithBoss = false;
 
 
     constructor(canvas, keyboard) {
@@ -50,7 +51,6 @@ class World {
             this.collectBottles();
             this.checkIfWinOrLose();
             this.returnCharacterPosition();
-            //this.bottleCollidingBoss();
         }, 100);
         intervalIds.push(interval, interval2)
     }
@@ -58,7 +58,9 @@ class World {
 
     addOverlay() {
         if (this.didLose) {
-            this.stopGame();
+            setTimeout(() => {
+                this.stopGame();
+            }, 1000);
             this.addToMap(this.loseOverlay);
             revealObject('restart-button');
         } else if (this.didWin) {
@@ -84,8 +86,12 @@ class World {
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
-                this.character.hit();
-                this.statusBar.setPercentage(this.character.energy)
+             if (enemy instanceof Chick || enemy instanceof Chicken) {
+                   this.character.hit(20);
+             } else {
+                this.character.hit(50);
+             } 
+             this.statusBar.setPercentage(this.character.energy)
             }
         });
     }
@@ -114,9 +120,9 @@ class World {
                     this.level.enemies.splice(this.level.enemies.indexOf(enemy), 1);
                 }, 500);
                 this.playAudio(enemy, 'jumped_on_sound', 0.2)
-                /*if (this.character.y > 70) {
+                if (this.character.y > 70) {
                     this.character.speedY = 10;
-                }*/
+                }
             }
         });
     }
@@ -127,7 +133,15 @@ class World {
             this.level.enemies.forEach((enemy) => {
                 if (this.bottleCollidingEnemy(enemy, indexBottle)) {
                     enemy.isJumpedOn = true;
-                    this.checkIfChickenOrBoss(enemy);
+                    if (enemy instanceof Chick || enemy instanceof Chicken) {
+                        setTimeout(() => {   
+                            this.level.enemies.splice(this.level.enemies.indexOf(enemy), 1);
+                        }, 500);
+                    } else {
+                        this.endboss.hit(20); 
+                        this.statusBarEndboss.setPercentage(this.endboss.energy);
+                        this.isCollidingWithBoss = true;
+                    }
                     this.playAudio(enemy, 'jumped_on_sound', 0.2);
                 }
             });
@@ -135,30 +149,8 @@ class World {
     }
 
 
-    checkIfChickenOrBoss(enemy) {
-        if (this instanceof Chick || this instanceof Chick) {
-            setTimeout(() => {   
-                this.level.enemies.splice(this.level.enemies.indexOf(enemy), 1);
-            }, 500);
-        } else {
-            this.endboss.energy -= 20;
-            this.statusBarEndboss.setPercentage(this.endboss.energy);
-        }
-    }
-
-
     bottleCollidingEnemy(enemy, indexBottle) {
         return this.throwableObjects[indexBottle].isColliding(enemy);
-    }
-
-
-    bottleCollidingBoss() {
-        this.throwableObjects.forEach((bottle, indexBottle) => {
-                if (this.bottleCollidingEnemy(this.endboss, indexBottle)) {
-                    this.bottle.playAnimation(this.bottle.IMAGES_SPLASH);
-                    this.throwableObjects.splice(0, 1);
-                }
-        });
     }
 
 

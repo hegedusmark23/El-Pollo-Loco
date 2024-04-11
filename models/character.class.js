@@ -106,22 +106,19 @@ class Character extends MoveableObject {
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
                 this.otherDirection = false;
-                this.audio['walking_sound'].volume = 1;
-                this.audio['walking_sound'].play();
+                this.playAudio('walking_sound',1);
             }
 
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.moveLeft();
                 this.otherDirection = true;
-                this.audio['walking_sound'].volume = 1;
-                this.audio['walking_sound'].play();
+                this.playAudio('walking_sound',1);
             }
 
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.audio['walking_sound'].pause();
                 this.jump();
-                this.audio['jumping_sound'].volume = 0.5;
-                this.audio['jumping_sound'].play();
+                this.playAudio('jumping_sound',0.5);
             }
             this.world.camera_x = -this.x + 100;
         }, 1000 / 60);
@@ -132,8 +129,7 @@ class Character extends MoveableObject {
                 this.playAnimation(this.IMAGES_DEAD)
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT)
-                this.audio['hurt_sound'].volume = 0.5;
-                this.audio['hurt_sound'].play();
+                this.playAudio('hurt_sound',0.5);
             } else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
             } else {
@@ -144,6 +140,8 @@ class Character extends MoveableObject {
         }, 100);
         intervalIds.push(interval, interval2);
     }
+
+    
 }
 
 

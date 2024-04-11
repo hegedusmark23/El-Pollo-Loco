@@ -7,6 +7,7 @@ class Endboss extends MoveableObject {
     hadFirstContact = false;
     speed = 10;
     isBossDead = false;
+    lastHit = 0;
     audio = {
         jumped_on_sound: new Audio('audio/chicken.mp3')
     }
@@ -65,27 +66,26 @@ class Endboss extends MoveableObject {
     animate() {
         let i = 0;
         let interval = setInterval(() => {
-            if (i < 10) {
-                this.playAnimation(this.IMAGES_ALERT);
-            } else {
-                this.playAnimation(this.IMAGES_WALKING);
-            }
-            i++;
-            if (world.character.x > 2720 && !this.hadFirstContact) {
-                i = 0;
-                this.hadFirstContact = true;
-            }
-        }, 1000 / 5);
-
-        let interval2 = setInterval(() => {
-            if (this.isBossDead == true) {
-                i = 11;
-                this.playAnimation(this.IMAGES_DEAD);
-            }
             this.checkIfBossfight();
             this.checkIfDead();
+            if (!this.isBossDead) {
+                if (i < 10) {
+                    this.playAnimation(this.IMAGES_ALERT);
+                } else if (world.character.x > 2720 && !this.hadFirstContact) {
+                    this.hadFirstContact = true;
+                    i = 0; // Reset i when the boss has the first contact
+                } else if (this.isHurt()){
+                    this.playAnimation(this.IMAGES_HURT);
+                } else {
+                    this.playAnimation(this.IMAGES_WALKING);
+                }
+                i++;
+            } else {
+                clearInterval(interval); // Clear the interval when the boss is dead
+                this.playAnimation(this.IMAGES_DEAD);
+            }
         }, 100);
-        intervalIds.push(interval, interval2);
+        intervalIds.push(interval);
     }
 
     checkIfBossfight() {
@@ -97,7 +97,6 @@ class Endboss extends MoveableObject {
     checkIfDead() {
         if (this.energy <= 0) {
             this.isBossDead = true;
-            console.log(this.isBossDead)
         }
     }
 }

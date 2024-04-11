@@ -26,8 +26,8 @@ class MoveableObject extends DrawableObject {
     }
 
 
-    hit() {
-        this.energy -= 20;
+    hit(dmg) {
+        this.energy -= dmg;
         if (this.energy < 0) {
             this.energy = 0;
         } else {
@@ -94,6 +94,11 @@ class MoveableObject extends DrawableObject {
         Object.values(arr).forEach(sound => {
             soundEffects.push(sound);
         });
+    }
+
+    playAudio(audio,volume){
+        this.audio[audio].volume = volume;
+        this.audio[audio].play();
     }
 
 
