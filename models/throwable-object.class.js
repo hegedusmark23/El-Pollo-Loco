@@ -68,7 +68,7 @@ class ThrowableObject extends MoveableObject {
         let interval = setInterval(() => {
             this.playAnimation(this.IMAGES_THROW);
             if (this.isOnGround() && this.splash == true || world.isCollidingWithBoss) {
-                clearInterval(interval); // Clear the interval first
+                //clearInterval(interval); // Clear the interval first
                 this.playAnimation(this.IMAGES_SPLASH);
                 this.audio['bottle_shatter_sound'].play();
                 this.splash = false;

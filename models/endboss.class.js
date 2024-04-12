@@ -8,6 +8,12 @@ class Endboss extends MoveableObject {
     speed = 10;
     isBossDead = false;
     lastHit = 0;
+    offset = {
+        top: 60,
+        left: 20,
+        right: 20,
+        bottom: 40
+    }
     audio = {
         jumped_on_sound: new Audio('audio/chicken.mp3')
     }
@@ -53,44 +59,44 @@ class Endboss extends MoveableObject {
     ];
 
     constructor() {
-        super().loadImage(this.IMAGES_ALERT[0]);
+        super().loadImage('img/4_enemie_boss_chicken/2_alert/G5.png');
+        this.AudioToArray(this.audio);
+        this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_ALERT);
-        this.loadImages(this.IMAGES_DEAD);
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_HURT);
-        this.loadImages(this.IMAGES_WALKING);
+        this.loadImages(this.IMAGES_DEAD);
         this.x = 3200;
         this.animate();
     }
 
     animate() {
-        let i = 0;
         let interval = setInterval(() => {
-            this.checkIfBossfight();
+            this.checkIfCharacterIsAtBoss();
             this.checkIfDead();
+            console.log(this.hadFirstContact)
             if (!this.isBossDead) {
-                if (i < 10) {
+                if (world.character.x < 2720) {
                     this.playAnimation(this.IMAGES_ALERT);
-                } else if (world.character.x > 2720 && !this.hadFirstContact) {
-                    this.hadFirstContact = true;
-                    i = 0; // Reset i when the boss has the first contact
-                } else if (this.isHurt()){
-                    this.playAnimation(this.IMAGES_HURT);
-                } else {
+                } else if (this.hadFirstContact == true){
                     this.playAnimation(this.IMAGES_WALKING);
+                    this.moveLeft();
+                } else if (this.isHurt()) {
+                    console.log('hurt');
+                    this.playAnimation(this.IMAGES_HURT);
                 }
-                i++;
             } else {
-                clearInterval(interval); // Clear the interval when the boss is dead
+                console.log('dead');
                 this.playAnimation(this.IMAGES_DEAD);
             }
-        }, 100);
+        }, 1000 / 10);
         intervalIds.push(interval);
     }
 
-    checkIfBossfight() {
-        if (this.hadFirstContact) {
-            this.moveLeft();
+    checkIfCharacterIsAtBoss(){
+        if (world.character.x > 2720) {
+            this.hadFirstContact = true;
+            
         }
     }
 
