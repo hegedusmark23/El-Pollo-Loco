@@ -65,10 +65,14 @@ class MoveableObject extends DrawableObject {
     }
 
     isJumpedOn(mo) {
+        // Adjust the threshold as needed
+        const verticalThreshold = 30; // Pixels
+        console.log('Character:', this.x, this.y, this.width, this.height);
+        console.log('Enemy:', mo.x, mo.y, mo.width, mo.height);
         return this.x + this.width - this.offset.right >= mo.x + mo.offset.left &&
             this.y + this.height - this.offset.bottom <= mo.y + mo.offset.top &&
             this.x + this.offset.left <= mo.x + mo.width - mo.offset.right &&
-            this.y + this.offset.top <= mo.y + mo.height - mo.offset.bottom
+            this.y + this.offset.top - verticalThreshold <= mo.y + mo.height - mo.offset.bottom
     }
 
     /**

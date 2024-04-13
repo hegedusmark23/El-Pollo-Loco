@@ -58,17 +58,19 @@ class World {
         if (this.didLose) {
             setTimeout(() => {
                 this.stopGame();
-            }, 500);
+            }, 400);
             this.addToMap(this.loseOverlay);
             this.playAudio(this.winOverlay, 'lose_sound', 0.7)
-            this.pauseAudio()
+            this.pauseAudio();
+            revealObject('restart-button');
         } else if (this.didWin) {
             setTimeout(() => {
                 this.stopGame();
             }, 1000);
             this.addToMap(this.winOverlay);
             this.playAudio(this.winOverlay, 'win_sound', 0.7)
-            this.pauseAudio() 
+            this.pauseAudio();
+            revealObject('restart-button');
         }
     }
 
