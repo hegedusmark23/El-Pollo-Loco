@@ -32,6 +32,13 @@ class DrawableObject {
     }
 
 
+    AudioToArray(arr) {
+        Object.values(arr).forEach(sound => {
+            soundEffects.push(sound);
+        });
+    }
+
+
     draw(ctx) {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }

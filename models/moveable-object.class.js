@@ -26,6 +26,15 @@ class MoveableObject extends DrawableObject {
     }
 
 
+    fallDown() {
+        setTimeout(() => {
+            setInterval(() => {
+                this.y -= this.speedY;
+                this.speedY -= this.acceletation;
+            }, 1000 / 25);
+        }, 1000);
+    }
+
     hit(dmg) {
         this.energy -= dmg;
         if (this.energy < 0) {
@@ -57,9 +66,9 @@ class MoveableObject extends DrawableObject {
 
     isJumpedOn(mo) {
         return this.x + this.width - this.offset.right >= mo.x + mo.offset.left &&
-        this.y + this.height - this.offset.bottom <= mo.y + mo.offset.top &&
-        this.x + this.offset.left <= mo.x + mo.width - mo.offset.right &&
-        this.y + this.offset.top <= mo.y + mo.height - mo.offset.bottom 
+            this.y + this.height - this.offset.bottom <= mo.y + mo.offset.top &&
+            this.x + this.offset.left <= mo.x + mo.width - mo.offset.right &&
+            this.y + this.offset.top <= mo.y + mo.height - mo.offset.bottom
     }
 
     /**
@@ -73,7 +82,7 @@ class MoveableObject extends DrawableObject {
         }
     }
 
-    isOnGround(){
+    isOnGround() {
         return this.y >= 350
     }
 
@@ -90,13 +99,7 @@ class MoveableObject extends DrawableObject {
     }
 
 
-    AudioToArray(arr) {
-        Object.values(arr).forEach(sound => {
-            soundEffects.push(sound);
-        });
-    }
-
-    playAudio(audio,volume){
+    playAudio(audio, volume) {
         this.audio[audio].volume = volume;
         this.audio[audio].play();
     }
@@ -106,7 +109,7 @@ class MoveableObject extends DrawableObject {
         this.x += this.speed;
     }
 
-    doNotMove(){
+    doNotMove() {
         this.x += 0;
     }
 
@@ -116,6 +119,6 @@ class MoveableObject extends DrawableObject {
 
 
     jump() {
-        this.speedY = 15;
+        this.speedY = 16;
     }
 }

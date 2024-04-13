@@ -127,6 +127,7 @@ class Character extends MoveableObject {
 
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD)
+                this.fallDown();
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT)
                 this.playAudio('hurt_sound',0.5);

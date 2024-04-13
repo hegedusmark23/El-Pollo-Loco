@@ -2,9 +2,6 @@
 class World {
     bottle = new ThrowableObject();
     character = new Character();
-    endboss = new Endboss();
-    chick = new Chick();
-    chicken = new Chicken();
     level = level1;
     ctx;
     canvas;
@@ -24,7 +21,8 @@ class World {
     check_if_threw = false;
     isAtBoss = false;
     isCollidingWithBoss = false;
-
+    loopAudio = true;
+    
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -60,16 +58,17 @@ class World {
         if (this.didLose) {
             setTimeout(() => {
                 this.stopGame();
-            }, 1000);
+            }, 500);
             this.addToMap(this.loseOverlay);
-            revealObject('restart-button');
+            this.playAudio(this.winOverlay, 'lose_sound', 0.7)
+            this.pauseAudio()
         } else if (this.didWin) {
             setTimeout(() => {
                 this.stopGame();
             }, 1000);
             this.addToMap(this.winOverlay);
-
-            revealObject('restart-button');
+            this.playAudio(this.winOverlay, 'win_sound', 0.7)
+            this.pauseAudio() 
         }
     }
 
@@ -77,9 +76,13 @@ class World {
     checkIfWinOrLose() {
         if (this.character.energy == 0) {
             this.didLose = true;
-        } else if (this.endboss.energy == 0) {
-            this.didWin = true;
-        }
+        } this.level.enemies.forEach(enemy => {
+            if (enemy instanceof Endboss) {
+                if (enemy.energy == 0) {
+                    this.didWin = true;
+                }
+            }
+        });
     }
 
 
@@ -89,7 +92,7 @@ class World {
              if (enemy instanceof Chick || enemy instanceof Chicken) {
                    this.character.hit(20);
              } else {
-                this.character.hit(50);
+                this.character.hit(60);
              } 
              this.statusBar.setPercentage(this.character.energy)
             }
@@ -137,10 +140,10 @@ class World {
                         setTimeout(() => {   
                             this.level.enemies.splice(this.level.enemies.indexOf(enemy), 1);
                         }, 500);
-                    } else {
-                        this.endboss.hit(20); 
-                        this.statusBarEndboss.setPercentage(this.endboss.energy);
+                    } else  {
                         this.isCollidingWithBoss = true;
+                        enemy.hit(20); 
+                        this.statusBarEndboss.setPercentage(enemy.energy);
                     }
                     this.playAudio(enemy, 'jumped_on_sound', 0.2);
                 }
@@ -180,11 +183,21 @@ class World {
     }
 
 
-    playAudio(obj, audio, volume) {
-        obj.audio[audio].volume = volume;
-        obj.audio[audio].play();
+    playAudio(obj, audio, vol) {
+            if (this.loopAudio) {
+                obj.audio[audio].volume = vol;
+                obj.audio[audio].play();
+            } else {
+                obj.audio[audio].pause();
+            }
     }
 
+
+    pauseAudio(){
+        setTimeout(() => {
+            this.loopAudio = false;
+        }, 3000);
+    }
 
     stopGame() {
         for (let i = 0; i < intervalIds.length; i++) {

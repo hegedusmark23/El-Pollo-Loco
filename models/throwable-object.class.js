@@ -70,7 +70,7 @@ class ThrowableObject extends MoveableObject {
             if (this.isOnGround() && this.splash == true || world.isCollidingWithBoss) {
                 //clearInterval(interval); // Clear the interval first
                 this.playAnimation(this.IMAGES_SPLASH);
-                this.audio['bottle_shatter_sound'].play();
+                this.playAudio('bottle_shatter_sound',0.2);
                 this.splash = false;
                 world.isCollidingWithBoss = false;
                 setTimeout(() => {

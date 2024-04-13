@@ -70,33 +70,34 @@ class Endboss extends MoveableObject {
         this.animate();
     }
 
+
     animate() {
         let interval = setInterval(() => {
             this.checkIfCharacterIsAtBoss();
             this.checkIfDead();
-            console.log(this.hadFirstContact)
-            if (!this.isBossDead) {
-                if (world.character.x < 2720) {
-                    this.playAnimation(this.IMAGES_ALERT);
-                } else if (this.hadFirstContact == true){
-                    this.playAnimation(this.IMAGES_WALKING);
-                    this.moveLeft();
-                } else if (this.isHurt()) {
-                    console.log('hurt');
-                    this.playAnimation(this.IMAGES_HURT);
-                }
-            } else {
-                console.log('dead');
+            if (this.isBossDead) {
                 this.playAnimation(this.IMAGES_DEAD);
+                this.fallDown();
+            } else if (this.isHurt()) {
+                this.playAnimation(this.IMAGES_HURT);
+            } else if (this.hadFirstContact) {
+                if (this.energy > 60) {
+                    this.playAnimation(this.IMAGES_WALKING);
+                } else {
+                    this.playAnimation(this.IMAGES_ATTACK);
+                }
+                this.moveLeft();
+            } else if (world.character.x < 2720) {
+                this.playAnimation(this.IMAGES_ALERT);
             }
-        }, 1000 / 10);
+        }, 100);
         intervalIds.push(interval);
     }
 
-    checkIfCharacterIsAtBoss(){
+    checkIfCharacterIsAtBoss() {
         if (world.character.x > 2720) {
             this.hadFirstContact = true;
-            
+            this.speed += 0.4
         }
     }
 
