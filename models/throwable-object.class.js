@@ -4,12 +4,6 @@ class ThrowableObject extends MoveableObject {
         throw_sound: new Audio('audio/throw.mp3'),
         bottle_shatter_sound: new Audio('audio/bottle-shatter.mp3')
     }
-    offset = {
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0
-    }
     splash = false;
     IMAGES_THROW = [
         'img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
@@ -49,9 +43,9 @@ class ThrowableObject extends MoveableObject {
         this.applyGravity();
         setInterval(() => {
             if (this.throw_direction == 'right') {
-                this.x += 5;
+                this.x += 10;
             } else if (this.throw_direction == 'left') {
-                this.x -= 5;
+                this.x -= 10;
             }
         }, 25);
     }
@@ -67,8 +61,8 @@ class ThrowableObject extends MoveableObject {
     animate() {
         let interval = setInterval(() => {
             this.playAnimation(this.IMAGES_THROW);
-            if (this.isOnGround() && this.splash == true || world.isCollidingWithBoss) {
-                //clearInterval(interval); // Clear the interval first
+            if (this.isOnGround() && this.splash || world.isCollidingWithBoss) {
+                clearInterval(interval); // Clear the interval first
                 this.playAnimation(this.IMAGES_SPLASH);
                 this.playAudio('bottle_shatter_sound',0.2);
                 this.splash = false;

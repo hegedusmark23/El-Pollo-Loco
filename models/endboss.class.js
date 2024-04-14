@@ -9,10 +9,10 @@ class Endboss extends MoveableObject {
     isBossDead = false;
     lastHit = 0;
     offset = {
-        top: 60,
-        left: 20,
-        right: 20,
-        bottom: 40
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0
     }
     audio = {
         jumped_on_sound: new Audio('audio/chicken.mp3')

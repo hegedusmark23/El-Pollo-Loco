@@ -17,6 +17,7 @@ function init() {
     world = new World(canvas, keyboard);
     playBackgoundMusic();
     handleDisappearingObjects();
+    idle();
 }
 
 
@@ -33,7 +34,13 @@ function fullScreen() {
     let canvas = document.getElementById('canvas');
     let icon = document.getElementById('fullscreen-icon');
     if (isFullscreen == false) {
-        container.requestFullscreen();
+        if(container.requestFullscreen) {
+            container.requestFullscreen();
+          } else if(container.msRequestFullscreen) {     
+            container.msRequestFullscreen();
+          } else if(container.webkitRequestFullscreen) {  
+            container.webkitRequestFullscreen();
+          }
         canvas.style.width = '100%'
         canvas.style.height = '100%'
         icon.src = 'img/exit-fullscreen.png'
@@ -83,6 +90,32 @@ function playBackgoundMusic() {
 
 function reloadPage(){
     location.reload();
+}
+
+function idle() {
+    function shortIdle() {
+        keyboard.idle = true;
+    }
+
+    function longIdle() {
+        keyboard.idle = false;
+        keyboard.long_idle = true;
+    }
+    
+    var shortIdleTimer;
+    var longIdleTimer;
+    function resetTimer() {
+        keyboard.idle = false;
+        keyboard.long_idle = false;
+        clearTimeout(shortIdleTimer);
+        clearTimeout(longIdleTimer);
+        shortIdleTimer = setTimeout(shortIdle, 3000);
+        longIdleTimer = setTimeout(longIdle, 7000);
+    }
+    window.addEventListener('mousemove', resetTimer, true);
+    window.addEventListener('mousedown', resetTimer, true);
+    window.addEventListener('click', resetTimer, true);
+    window.addEventListener('keydown', resetTimer, true);
 }
 
 

@@ -22,7 +22,7 @@ class MoveableObject extends DrawableObject {
                 this.y -= this.speedY;
                 this.speedY -= this.acceletation;
             }
-        }, 1000 / 25);
+        }, 1000 / 40);
     }
 
 
@@ -63,18 +63,7 @@ class MoveableObject extends DrawableObject {
             this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
             this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom
     }
-
-    isJumpedOn(mo) {
-        // Adjust the threshold as needed
-        const verticalThreshold = 30; // Pixels
-        console.log('Character:', this.x, this.y, this.width, this.height);
-        console.log('Enemy:', mo.x, mo.y, mo.width, mo.height);
-        return this.x + this.width - this.offset.right >= mo.x + mo.offset.left &&
-            this.y + this.height - this.offset.bottom <= mo.y + mo.offset.top &&
-            this.x + this.offset.left <= mo.x + mo.width - mo.offset.right &&
-            this.y + this.offset.top - verticalThreshold <= mo.y + mo.height - mo.offset.bottom
-    }
-
+    
     /**
      * Defines if the character above Ground is.
      */
@@ -85,6 +74,7 @@ class MoveableObject extends DrawableObject {
             return this.y < 180;
         }
     }
+
 
     isOnGround() {
         return this.y >= 350
@@ -113,9 +103,11 @@ class MoveableObject extends DrawableObject {
         this.x += this.speed;
     }
 
+
     doNotMove() {
         this.x += 0;
     }
+
 
     moveLeft() {
         this.x -= this.speed;

@@ -6,11 +6,12 @@ class Character extends MoveableObject {
     x = 100;
     speed = 5;
     energy = 100;
+    world;
     offset = {
-        top: 60,
-        left: 40,
-        right: 70,
-        bottom: 60
+        top: 20,
+        left: 15,
+        right: 40,
+        bottom: 10
     }
 
     IMAGES_WALKING = [
@@ -77,11 +78,11 @@ class Character extends MoveableObject {
 
     ]
 
-    world;
     audio = {
         walking_sound: new Audio('audio/running.mp3'),
         jumping_sound: new Audio('audio/jump.mp3'),
-        hurt_sound: new Audio('audio/hurt.mp3')
+        hurt_sound: new Audio('audio/hurt.mp3'),
+        bouncing_sound: new Audio('audio/boing.mp3')
     }
 
 
@@ -133,12 +134,16 @@ class Character extends MoveableObject {
                 this.playAudio('hurt_sound',0.5);
             } else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
+            } else if (this.world.keyboard.idle) {
+                this.playAnimation(this.IMAGES_IDLE);
+            } else if (this.world.keyboard.long_idle) {
+                this.playAnimation(this.IMAGES_LONG_IDLE);
             } else {
                 if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                     this.playAnimation(this.IMAGES_WALKING);
                 }
             }
-        }, 100);
+        }, 1000 / 10);
         intervalIds.push(interval, interval2);
     }
 

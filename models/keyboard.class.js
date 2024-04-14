@@ -7,5 +7,6 @@ class Keyboard {
     SPACE = false;
     D = false;
 
-    
+    idle = false;
+    long_idle = false;
 }
