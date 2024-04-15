@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>models/character.class.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BackgroundObject.html">BackgroundObject</a></li><li><a href="Bottles.html">Bottles</a><ul class='methods'><li data-type='method'><a href="Bottles.html#.animate#animate">animate</a></li></ul></li><li><a href="Character.html">Character</a><ul class='methods'><li data-type='method'><a href="Character.html#.animate#animate">animate</a></li></ul></li><li><a href="Chick.html">Chick</a><ul class='methods'><li data-type='method'><a href="Chick.html#.animate#animate">animate</a></li></ul></li><li><a href="Chicken.html">Chicken</a><ul class='methods'><li data-type='method'><a href="Chicken.html#.animate#animate">animate</a></li></ul></li><li><a href="Clouds.html">Clouds</a><ul class='methods'><li data-type='method'><a href="Clouds.html#.animate#animate">animate</a></li></ul></li><li><a href="Coins.html">Coins</a><ul class='methods'><li data-type='method'><a href="Coins.html#.animate#animate">animate</a></li></ul></li><li><a href="DrawableObject.html">DrawableObject</a><ul class='methods'><li data-type='method'><a href="DrawableObject.html#.AudioToArray#AudioToArray">AudioToArray</a></li><li data-type='method'><a href="DrawableObject.html#.draw#draw">draw</a></li><li data-type='method'><a href="DrawableObject.html#.drawFrame#drawFrame">drawFrame</a></li><li data-type='method'><a href="DrawableObject.html#.loadImage#loadImage">loadImage</a></li><li data-type='method'><a href="DrawableObject.html#.loadImages#loadImages">loadImages</a></li></ul></li><li><a href="Endboss.html">Endboss</a><ul class='methods'><li data-type='method'><a href="Endboss.html#.animate#animate">animate</a></li><li data-type='method'><a href="Endboss.html#.checkIfCharacterIsAtBoss#checkIfCharacterIsAtBoss">checkIfCharacterIsAtBoss</a></li><li data-type='method'><a href="Endboss.html#.checkIfDead#checkIfDead">checkIfDead</a></li></ul></li><li><a href="Keyboard.html">Keyboard</a></li><li><a href="Level.html">Level</a></li><li><a href="MoveableObject.html">MoveableObject</a><ul class='methods'><li data-type='method'><a href="MoveableObject.html#.applyGravity#applyGravity">applyGravity</a></li><li data-type='method'><a href="MoveableObject.html#.fallDown#fallDown">fallDown</a></li><li data-type='method'><a href="MoveableObject.html#.hit#hit">hit</a></li><li data-type='method'><a href="MoveableObject.html#.isAboveGround#isAboveGround">isAboveGround</a></li><li data-type='method'><a href="MoveableObject.html#.isColliding#isColliding">isColliding</a></li><li data-type='method'><a href="MoveableObject.html#.isDead#isDead">isDead</a></li><li data-type='method'><a href="MoveableObject.html#.isHurt#isHurt">isHurt</a></li><li data-type='method'><a href="MoveableObject.html#.isOnGround#isOnGround">isOnGround</a></li><li data-type='method'><a href="MoveableObject.html#.playAnimation#playAnimation">playAnimation</a></li><li data-type='method'><a href="MoveableObject.html#.playAudio#playAudio">playAudio</a></li></ul></li><li><a href="Overlay.html">Overlay</a></li><li><a href="StatusBar.html">StatusBar</a><ul class='methods'><li data-type='method'><a href="StatusBar.html#.resolveImageIndex#resolveImageIndex">resolveImageIndex</a></li><li data-type='method'><a href="StatusBar.html#.setPercentage#setPercentage">setPercentage</a></li></ul></li><li><a href="StatusBarCoins.html">StatusBarCoins</a><ul class='methods'><li data-type='method'><a href="StatusBarCoins.html#.resolveImageIndex#resolveImageIndex">resolveImageIndex</a></li><li data-type='method'><a href="StatusBarCoins.html#.setPercentage#setPercentage">setPercentage</a></li></ul></li><li><a href="StatusBarEndboss.html">StatusBarEndboss</a><ul class='methods'><li data-type='method'><a href="StatusBarEndboss.html#.resolveImageIndex#resolveImageIndex">resolveImageIndex</a></li><li data-type='method'><a href="StatusBarEndboss.html#.setPercentage#setPercentage">setPercentage</a></li></ul></li><li><a href="StatusBarFlasks.html">StatusBarFlasks</a><ul class='methods'><li data-type='method'><a href="StatusBarFlasks.html#.resolveImageIndex#resolveImageIndex">resolveImageIndex</a></li><li data-type='method'><a href="StatusBarFlasks.html#.setPercentage#setPercentage">setPercentage</a></li></ul></li><li><a href="ThrowableObject.html">ThrowableObject</a><ul class='methods'><li data-type='method'><a href="ThrowableObject.html#.animate#animate">animate</a></li><li data-type='method'><a href="ThrowableObject.html#.applyGravity#applyGravity">applyGravity</a></li><li data-type='method'><a href="ThrowableObject.html#.checkIfThrew#checkIfThrew">checkIfThrew</a></li><li data-type='method'><a href="ThrowableObject.html#.fallDown#fallDown">fallDown</a></li><li data-type='method'><a href="ThrowableObject.html#.hit#hit">hit</a></li><li data-type='method'><a href="ThrowableObject.html#.isAboveGround#isAboveGround">isAboveGround</a></li><li data-type='method'><a href="ThrowableObject.html#.isColliding#isColliding">isColliding</a></li><li data-type='method'><a href="ThrowableObject.html#.isDead#isDead">isDead</a></li><li data-type='method'><a href="ThrowableObject.html#.isHurt#isHurt">isHurt</a></li><li data-type='method'><a href="ThrowableObject.html#.isOnGround#isOnGround">isOnGround</a></li><li data-type='method'><a href="ThrowableObject.html#.playAnimation#playAnimation">playAnimation</a></li><li data-type='method'><a href="ThrowableObject.html#.playAudio#playAudio">playAudio</a></li><li data-type='method'><a href="ThrowableObject.html#.throw#throw">throw</a></li></ul></li><li><a href="World.html">World</a><ul class='methods'><li data-type='method'><a href="World.html#.addObjectsToMap#addObjectsToMap">addObjectsToMap</a></li><li data-type='method'><a href="World.html#.addOverlay#addOverlay">addOverlay</a></li><li data-type='method'><a href="World.html#.addToMap#addToMap">addToMap</a></li><li data-type='method'><a href="World.html#.bottleCollidingEnemy#bottleCollidingEnemy">bottleCollidingEnemy</a></li><li data-type='method'><a href="World.html#.checkCollisions#checkCollisions">checkCollisions</a></li><li data-type='method'><a href="World.html#.checkIfWinOrLose#checkIfWinOrLose">checkIfWinOrLose</a></li><li data-type='method'><a href="World.html#.checkThrowObjects#checkThrowObjects">checkThrowObjects</a></li><li data-type='method'><a href="World.html#.collectBottles#collectBottles">collectBottles</a></li><li data-type='method'><a href="World.html#.collectCoins#collectCoins">collectCoins</a></li><li data-type='method'><a href="World.html#.draw#draw">draw</a></li><li data-type='method'><a href="World.html#.flipImage#flipImage">flipImage</a></li><li data-type='method'><a href="World.html#.flipImageBack#flipImageBack">flipImageBack</a></li><li data-type='method'><a href="World.html#.hitByBottle#hitByBottle">hitByBottle</a></li><li data-type='method'><a href="World.html#.jumpAfterKill#jumpAfterKill">jumpAfterKill</a></li><li data-type='method'><a href="World.html#.killByBottle#killByBottle">killByBottle</a></li><li data-type='method'><a href="World.html#.killByJump#killByJump">killByJump</a></li><li data-type='method'><a href="World.html#.pauseAudio#pauseAudio">pauseAudio</a></li><li data-type='method'><a href="World.html#.playAudio#playAudio">playAudio</a></li><li data-type='method'><a href="World.html#.returnCharacterPosition#returnCharacterPosition">returnCharacterPosition</a></li><li data-type='method'><a href="World.html#.revealBossHealth#revealBossHealth">revealBossHealth</a></li><li data-type='method'><a href="World.html#.run#run">run</a></li><li data-type='method'><a href="World.html#.setWorld#setWorld">setWorld</a></li><li data-type='method'><a href="World.html#.stopGame#stopGame">stopGame</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#fullScreen">fullScreen</a></li><li><a href="global.html#handleDisappearingObjects">handleDisappearingObjects</a></li><li><a href="global.html#handleMobileButtons">handleMobileButtons</a></li><li><a href="global.html#handleTurnDeviceWarning">handleTurnDeviceWarning</a></li><li><a href="global.html#hideObject">hideObject</a></li><li><a href="global.html#idle">idle</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initLevel">initLevel</a></li><li><a href="global.html#mobileButtonsPressEvents">mobileButtonsPressEvents</a></li><li><a href="global.html#playBackgoundMusic">playBackgoundMusic</a></li><li><a href="global.html#reloadPage">reloadPage</a></li><li><a href="global.html#revealObject">revealObject</a></li><li><a href="global.html#toggleControls">toggleControls</a></li><li><a href="global.html#toggleMuteAudio">toggleMuteAudio</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">models/character.class.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Class representing a character object.
+ */
+class Character extends MoveableObject {
+    height = 250;
+    width = 130;
+    y = 180;
+    x = 100;
+    speed = 5;
+    energy = 100;
+    world;
+    offset = {
+        top: 20,
+        left: 15,
+        right: 40,
+        bottom: 10
+    }
+
+    IMAGES_WALKING = [
+        'img/2_character_pepe/2_walk/W-21.png',
+        'img/2_character_pepe/2_walk/W-22.png',
+        'img/2_character_pepe/2_walk/W-23.png',
+        'img/2_character_pepe/2_walk/W-24.png',
+        'img/2_character_pepe/2_walk/W-25.png',
+        'img/2_character_pepe/2_walk/W-26.png',
+    ]
+
+    IMAGES_JUMPING = [
+        'img/2_character_pepe/3_jump/J-31.png',
+        'img/2_character_pepe/3_jump/J-32.png',
+        'img/2_character_pepe/3_jump/J-33.png',
+        'img/2_character_pepe/3_jump/J-34.png',
+        'img/2_character_pepe/3_jump/J-35.png',
+        'img/2_character_pepe/3_jump/J-36.png',
+        'img/2_character_pepe/3_jump/J-37.png',
+        'img/2_character_pepe/3_jump/J-38.png',
+        'img/2_character_pepe/3_jump/J-39.png'
+    ]
+
+    IMAGES_DEAD = [
+        'img/2_character_pepe/5_dead/D-51.png',
+        'img/2_character_pepe/5_dead/D-52.png',
+        'img/2_character_pepe/5_dead/D-53.png',
+        'img/2_character_pepe/5_dead/D-54.png',
+        'img/2_character_pepe/5_dead/D-55.png',
+        'img/2_character_pepe/5_dead/D-56.png',
+        'img/2_character_pepe/5_dead/D-57.png',
+    ]
+
+    IMAGES_HURT = [
+        'img/2_character_pepe/4_hurt/H-41.png',
+        'img/2_character_pepe/4_hurt/H-42.png',
+        'img/2_character_pepe/4_hurt/H-43.png'
+    ]
+
+    IMAGES_IDLE = [
+        'img/2_character_pepe/1_idle/idle/I-1.png',
+        'img/2_character_pepe/1_idle/idle/I-2.png',
+        'img/2_character_pepe/1_idle/idle/I-3.png',
+        'img/2_character_pepe/1_idle/idle/I-4.png',
+        'img/2_character_pepe/1_idle/idle/I-5.png',
+        'img/2_character_pepe/1_idle/idle/I-6.png',
+        'img/2_character_pepe/1_idle/idle/I-7.png',
+        'img/2_character_pepe/1_idle/idle/I-8.png',
+        'img/2_character_pepe/1_idle/idle/I-9.png',
+        'img/2_character_pepe/1_idle/idle/I-10.png',
+    ]
+    
+    IMAGES_LONG_IDLE = [
+        'img/2_character_pepe/1_idle/long_idle/I-11.png',
+        'img/2_character_pepe/1_idle/long_idle/I-12.png',
+        'img/2_character_pepe/1_idle/long_idle/I-13.png',
+        'img/2_character_pepe/1_idle/long_idle/I-14.png',
+        'img/2_character_pepe/1_idle/long_idle/I-15.png',
+        'img/2_character_pepe/1_idle/long_idle/I-16.png',
+        'img/2_character_pepe/1_idle/long_idle/I-17.png',
+        'img/2_character_pepe/1_idle/long_idle/I-18.png',
+        'img/2_character_pepe/1_idle/long_idle/I-19.png',
+        'img/2_character_pepe/1_idle/long_idle/I-20.png',
+
+    ]
+
+    audio = {
+        walking_sound: new Audio('audio/running.mp3'),
+        jumping_sound: new Audio('audio/jump.mp3'),
+        hurt_sound: new Audio('audio/hurt.mp3'),
+        bouncing_sound: new Audio('audio/boing.mp3')
+    }
+
+
+    /**
+     * Constructs a new Character instance.
+     */
+    constructor() {
+        // Calls the superclass constructor and loads the initial image.
+        super().loadImage('img/2_character_pepe/2_walk/W-21.png');
+        // Converts audio object to array.
+        this.AudioToArray(this.audio);
+        // Loads images for various animations.
+        this.loadImages(this.IMAGES_WALKING);
+        this.loadImages(this.IMAGES_JUMPING);
+        this.loadImages(this.IMAGES_DEAD)
+        this.loadImages(this.IMAGES_HURT)
+        this.loadImages(this.IMAGES_IDLE)
+        this.loadImages(this.IMAGES_LONG_IDLE)
+        // Applies gravity to the character.
+        this.applyGravity();
+        // Starts the character animation.
+        this.animate();
+    }
+
+    /**
+     * Animates the character.
+     */
+    animate() {
+        // Animates character movement.
+        let interval = setInterval(() => {
+            // Pauses walking sound if character stops moving.
+            this.audio['walking_sound'].pause();
+            // Moves character right if right arrow key is pressed and not at level end.
+            if (this.world.keyboard.RIGHT &amp;&amp; this.x &lt; this.world.level.level_end_x) {
+                this.moveRight();
+                this.otherDirection = false;
+                this.playAudio('walking_sound',1);
+            }
+            // Moves character left if left arrow key is pressed and not at edge of canvas.
+            if (this.world.keyboard.LEFT &amp;&amp; this.x > 0) {
+                this.moveLeft();
+                this.otherDirection = true;
+                this.playAudio('walking_sound',1);
+            }
+            // Makes character jump if space key is pressed and not already jumping.
+            if (this.world.keyboard.SPACE &amp;&amp; !this.isAboveGround()) {
+                this.audio['walking_sound'].pause();
+                this.jump();
+                this.playAudio('jumping_sound',0.5);
+            }
+            // Adjusts camera position based on character's position.
+            this.world.camera_x = -this.x + 100;
+        }, 1000 / 60);
+
+        // Animates character state changes.
+        let interval2 = setInterval(() => {
+            // Plays dead animation if character is dead.
+            if (this.isDead()) {
+                this.playAnimation(this.IMAGES_DEAD)
+                this.fallDown();
+            }
+            // Plays hurt animation if character is hurt.
+            else if (this.isHurt()) {
+                this.playAnimation(this.IMAGES_HURT)
+                this.playAudio('hurt_sound',0.5);
+            }
+            // Plays jumping animation if character is in air.
+            else if (this.isAboveGround()) {
+                this.playAnimation(this.IMAGES_JUMPING);
+            }
+            // Plays idle animation if character is idle.
+            else if (this.world.keyboard.idle) {
+                this.playAnimation(this.IMAGES_IDLE);
+            }
+            // Plays long idle animation if character is long idle.
+            else if (this.world.keyboard.long_idle) {
+                this.playAnimation(this.IMAGES_LONG_IDLE);
+            }
+            // Plays walking animation if character is moving.
+            else {
+                if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+                    this.playAnimation(this.IMAGES_WALKING);
+                }
+            }
+        }, 1000 / 10);
+        // Pushes interval IDs to the global array.
+        intervalIds.push(interval, interval2);
+    }   
+}
+
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Mon Apr 15 2024 18:11:29 GMT+0200 (közép-európai nyári idő) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+
+</body>
+</html>

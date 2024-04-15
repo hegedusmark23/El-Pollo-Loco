@@ -1,0 +1,2034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>ThrowableObject - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BackgroundObject.html">BackgroundObject</a></li><li><a href="Bottles.html">Bottles</a><ul class='methods'><li data-type='method'><a href="Bottles.html#.animate#animate">animate</a></li></ul></li><li><a href="Character.html">Character</a><ul class='methods'><li data-type='method'><a href="Character.html#.animate#animate">animate</a></li></ul></li><li><a href="Chick.html">Chick</a><ul class='methods'><li data-type='method'><a href="Chick.html#.animate#animate">animate</a></li></ul></li><li><a href="Chicken.html">Chicken</a><ul class='methods'><li data-type='method'><a href="Chicken.html#.animate#animate">animate</a></li></ul></li><li><a href="Clouds.html">Clouds</a><ul class='methods'><li data-type='method'><a href="Clouds.html#.animate#animate">animate</a></li></ul></li><li><a href="Coins.html">Coins</a><ul class='methods'><li data-type='method'><a href="Coins.html#.animate#animate">animate</a></li></ul></li><li><a href="DrawableObject.html">DrawableObject</a><ul class='methods'><li data-type='method'><a href="DrawableObject.html#.AudioToArray#AudioToArray">AudioToArray</a></li><li data-type='method'><a href="DrawableObject.html#.draw#draw">draw</a></li><li data-type='method'><a href="DrawableObject.html#.drawFrame#drawFrame">drawFrame</a></li><li data-type='method'><a href="DrawableObject.html#.loadImage#loadImage">loadImage</a></li><li data-type='method'><a href="DrawableObject.html#.loadImages#loadImages">loadImages</a></li></ul></li><li><a href="Endboss.html">Endboss</a><ul class='methods'><li data-type='method'><a href="Endboss.html#.animate#animate">animate</a></li><li data-type='method'><a href="Endboss.html#.checkIfCharacterIsAtBoss#checkIfCharacterIsAtBoss">checkIfCharacterIsAtBoss</a></li><li data-type='method'><a href="Endboss.html#.checkIfDead#checkIfDead">checkIfDead</a></li></ul></li><li><a href="Keyboard.html">Keyboard</a></li><li><a href="Level.html">Level</a></li><li><a href="MoveableObject.html">MoveableObject</a><ul class='methods'><li data-type='method'><a href="MoveableObject.html#.applyGravity#applyGravity">applyGravity</a></li><li data-type='method'><a href="MoveableObject.html#.fallDown#fallDown">fallDown</a></li><li data-type='method'><a href="MoveableObject.html#.hit#hit">hit</a></li><li data-type='method'><a href="MoveableObject.html#.isAboveGround#isAboveGround">isAboveGround</a></li><li data-type='method'><a href="MoveableObject.html#.isColliding#isColliding">isColliding</a></li><li data-type='method'><a href="MoveableObject.html#.isDead#isDead">isDead</a></li><li data-type='method'><a href="MoveableObject.html#.isHurt#isHurt">isHurt</a></li><li data-type='method'><a href="MoveableObject.html#.isOnGround#isOnGround">isOnGround</a></li><li data-type='method'><a href="MoveableObject.html#.playAnimation#playAnimation">playAnimation</a></li><li data-type='method'><a href="MoveableObject.html#.playAudio#playAudio">playAudio</a></li></ul></li><li><a href="Overlay.html">Overlay</a></li><li><a href="StatusBar.html">StatusBar</a><ul class='methods'><li data-type='method'><a href="StatusBar.html#.resolveImageIndex#resolveImageIndex">resolveImageIndex</a></li><li data-type='method'><a href="StatusBar.html#.setPercentage#setPercentage">setPercentage</a></li></ul></li><li><a href="StatusBarCoins.html">StatusBarCoins</a><ul class='methods'><li data-type='method'><a href="StatusBarCoins.html#.resolveImageIndex#resolveImageIndex">resolveImageIndex</a></li><li data-type='method'><a href="StatusBarCoins.html#.setPercentage#setPercentage">setPercentage</a></li></ul></li><li><a href="StatusBarEndboss.html">StatusBarEndboss</a><ul class='methods'><li data-type='method'><a href="StatusBarEndboss.html#.resolveImageIndex#resolveImageIndex">resolveImageIndex</a></li><li data-type='method'><a href="StatusBarEndboss.html#.setPercentage#setPercentage">setPercentage</a></li></ul></li><li><a href="StatusBarFlasks.html">StatusBarFlasks</a><ul class='methods'><li data-type='method'><a href="StatusBarFlasks.html#.resolveImageIndex#resolveImageIndex">resolveImageIndex</a></li><li data-type='method'><a href="StatusBarFlasks.html#.setPercentage#setPercentage">setPercentage</a></li></ul></li><li><a href="ThrowableObject.html">ThrowableObject</a><ul class='methods'><li data-type='method'><a href="ThrowableObject.html#.animate#animate">animate</a></li><li data-type='method'><a href="ThrowableObject.html#.applyGravity#applyGravity">applyGravity</a></li><li data-type='method'><a href="ThrowableObject.html#.checkIfThrew#checkIfThrew">checkIfThrew</a></li><li data-type='method'><a href="ThrowableObject.html#.fallDown#fallDown">fallDown</a></li><li data-type='method'><a href="ThrowableObject.html#.hit#hit">hit</a></li><li data-type='method'><a href="ThrowableObject.html#.isAboveGround#isAboveGround">isAboveGround</a></li><li data-type='method'><a href="ThrowableObject.html#.isColliding#isColliding">isColliding</a></li><li data-type='method'><a href="ThrowableObject.html#.isDead#isDead">isDead</a></li><li data-type='method'><a href="ThrowableObject.html#.isHurt#isHurt">isHurt</a></li><li data-type='method'><a href="ThrowableObject.html#.isOnGround#isOnGround">isOnGround</a></li><li data-type='method'><a href="ThrowableObject.html#.playAnimation#playAnimation">playAnimation</a></li><li data-type='method'><a href="ThrowableObject.html#.playAudio#playAudio">playAudio</a></li><li data-type='method'><a href="ThrowableObject.html#.throw#throw">throw</a></li></ul></li><li><a href="World.html">World</a><ul class='methods'><li data-type='method'><a href="World.html#.addObjectsToMap#addObjectsToMap">addObjectsToMap</a></li><li data-type='method'><a href="World.html#.addOverlay#addOverlay">addOverlay</a></li><li data-type='method'><a href="World.html#.addToMap#addToMap">addToMap</a></li><li data-type='method'><a href="World.html#.bottleCollidingEnemy#bottleCollidingEnemy">bottleCollidingEnemy</a></li><li data-type='method'><a href="World.html#.checkCollisions#checkCollisions">checkCollisions</a></li><li data-type='method'><a href="World.html#.checkIfWinOrLose#checkIfWinOrLose">checkIfWinOrLose</a></li><li data-type='method'><a href="World.html#.checkThrowObjects#checkThrowObjects">checkThrowObjects</a></li><li data-type='method'><a href="World.html#.collectBottles#collectBottles">collectBottles</a></li><li data-type='method'><a href="World.html#.collectCoins#collectCoins">collectCoins</a></li><li data-type='method'><a href="World.html#.draw#draw">draw</a></li><li data-type='method'><a href="World.html#.flipImage#flipImage">flipImage</a></li><li data-type='method'><a href="World.html#.flipImageBack#flipImageBack">flipImageBack</a></li><li data-type='method'><a href="World.html#.hitByBottle#hitByBottle">hitByBottle</a></li><li data-type='method'><a href="World.html#.jumpAfterKill#jumpAfterKill">jumpAfterKill</a></li><li data-type='method'><a href="World.html#.killByBottle#killByBottle">killByBottle</a></li><li data-type='method'><a href="World.html#.killByJump#killByJump">killByJump</a></li><li data-type='method'><a href="World.html#.pauseAudio#pauseAudio">pauseAudio</a></li><li data-type='method'><a href="World.html#.playAudio#playAudio">playAudio</a></li><li data-type='method'><a href="World.html#.returnCharacterPosition#returnCharacterPosition">returnCharacterPosition</a></li><li data-type='method'><a href="World.html#.revealBossHealth#revealBossHealth">revealBossHealth</a></li><li data-type='method'><a href="World.html#.run#run">run</a></li><li data-type='method'><a href="World.html#.setWorld#setWorld">setWorld</a></li><li data-type='method'><a href="World.html#.stopGame#stopGame">stopGame</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#fullScreen">fullScreen</a></li><li><a href="global.html#handleDisappearingObjects">handleDisappearingObjects</a></li><li><a href="global.html#handleMobileButtons">handleMobileButtons</a></li><li><a href="global.html#handleTurnDeviceWarning">handleTurnDeviceWarning</a></li><li><a href="global.html#hideObject">hideObject</a></li><li><a href="global.html#idle">idle</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initLevel">initLevel</a></li><li><a href="global.html#mobileButtonsPressEvents">mobileButtonsPressEvents</a></li><li><a href="global.html#playBackgoundMusic">playBackgoundMusic</a></li><li><a href="global.html#reloadPage">reloadPage</a></li><li><a href="global.html#revealObject">revealObject</a></li><li><a href="global.html#toggleControls">toggleControls</a></li><li><a href="global.html#toggleMuteAudio">toggleMuteAudio</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">ThrowableObject</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        <h2>
+        
+            ThrowableObject
+        
+        </h2>
+        
+            <div class="class-description usertext"><p>Class representing a throwable object in the game.</p></div>
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+
+    
+    <h2>Constructor</h2>
+    
+
+    <h4 class="name" id="ThrowableObject"><span class="type-signature"></span>new ThrowableObject<span class="signature">(x, y, check_if_threw, throw_direction)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Constructs a new ThrowableObject.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_throwable-object.class.js.html">models/throwable-object.class.js</a>, <a href="models_throwable-object.class.js.html#line5">line 5</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>x</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The x-coordinate of the throwable object.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>y</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The y-coordinate of the throwable object.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>check_if_threw</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">boolean</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Flag to check if the object was thrown.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>throw_direction</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The direction in which the object is thrown.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        </div>
+    
+
+    
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li><a href="MoveableObject.html">MoveableObject</a></li>
+    </ul>
+
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id="IMAGES_SPLASH"><span class="type-signature"></span>IMAGES_SPLASH<span class="type-signature"> :Array.&lt;string></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Array of image paths representing the throwable object in splash animation.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_throwable-object.class.js.html">models/throwable-object.class.js</a>, <a href="models_throwable-object.class.js.html#line36">line 36</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Array of image paths representing the throwable object in splash animation.</p>
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Array.&lt;string></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="IMAGES_THROW"><span class="type-signature"></span>IMAGES_THROW<span class="type-signature"> :Array.&lt;string></span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Array of image paths representing the throwable object in throw animation.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_throwable-object.class.js.html">models/throwable-object.class.js</a>, <a href="models_throwable-object.class.js.html#line25">line 25</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Array of image paths representing the throwable object in throw animation.</p>
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Array.&lt;string></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="audio"><span class="type-signature"></span>audio<span class="type-signature"> :Object</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Audio objects for throw and bottle shatter sounds.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_throwable-object.class.js.html">models/throwable-object.class.js</a>, <a href="models_throwable-object.class.js.html#line10">line 10</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Audio objects for throw and bottle shatter sounds.</p>
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="splash"><span class="type-signature"></span>splash<span class="type-signature"> :boolean</span></h4>
+
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Flag indicating if the throwable object splashes.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_throwable-object.class.js.html">models/throwable-object.class.js</a>, <a href="models_throwable-object.class.js.html#line19">line 19</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Flag indicating if the throwable object splashes.</p>
+</div>
+
+
+
+    <h5 class="h5-types">Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">boolean</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="animate"><span class="type-signature"></span>animate<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Animates the throwable object.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_throwable-object.class.js.html">models/throwable-object.class.js</a>, <a href="models_throwable-object.class.js.html#line95">line 95</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="applyGravity"><span class="type-signature"></span>applyGravity<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Applies gravity to the movable object.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_moveable-object.class.js.html">models/moveable-object.class.js</a>, <a href="models_moveable-object.class.js.html#line22">line 22</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="MoveableObject.html#applyGravity">MoveableObject#applyGravity</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="checkIfThrew"><span class="type-signature"></span>checkIfThrew<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Checks if the throwable object was thrown.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_throwable-object.class.js.html">models/throwable-object.class.js</a>, <a href="models_throwable-object.class.js.html#line86">line 86</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="fallDown"><span class="type-signature"></span>fallDown<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Makes the object fall down after a certain delay.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_moveable-object.class.js.html">models/moveable-object.class.js</a>, <a href="models_moveable-object.class.js.html#line34">line 34</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="MoveableObject.html#fallDown">MoveableObject#fallDown</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="hit"><span class="type-signature"></span>hit<span class="signature">(dmg)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Inflicts damage to the movable object.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_moveable-object.class.js.html">models/moveable-object.class.js</a>, <a href="models_moveable-object.class.js.html#line47">line 47</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="MoveableObject.html#hit">MoveableObject#hit</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>dmg</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The amount of damage to inflict.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="isAboveGround"><span class="type-signature"></span>isAboveGround<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Checks if the movable object is above ground level.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_moveable-object.class.js.html">models/moveable-object.class.js</a>, <a href="models_moveable-object.class.js.html#line86">line 86</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="MoveableObject.html#isAboveGround">MoveableObject#isAboveGround</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="isColliding"><span class="type-signature"></span>isColliding<span class="signature">(mo)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Checks if the movable object is colliding with another object.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_moveable-object.class.js.html">models/moveable-object.class.js</a>, <a href="models_moveable-object.class.js.html#line76">line 76</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="MoveableObject.html#isColliding">MoveableObject#isColliding</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>mo</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="MoveableObject.html">MoveableObject</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The other moveable object to check collision with.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="isDead"><span class="type-signature"></span>isDead<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Checks if the movable object is dead.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_moveable-object.class.js.html">models/moveable-object.class.js</a>, <a href="models_moveable-object.class.js.html#line59">line 59</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="MoveableObject.html#isDead">MoveableObject#isDead</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="isHurt"><span class="type-signature"></span>isHurt<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Checks if the movable object is currently hurt.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_moveable-object.class.js.html">models/moveable-object.class.js</a>, <a href="models_moveable-object.class.js.html#line66">line 66</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="MoveableObject.html#isHurt">MoveableObject#isHurt</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="isOnGround"><span class="type-signature"></span>isOnGround<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Checks if the movable object is on the ground.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_moveable-object.class.js.html">models/moveable-object.class.js</a>, <a href="models_moveable-object.class.js.html#line97">line 97</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="MoveableObject.html#isOnGround">MoveableObject#isOnGround</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="playAnimation"><span class="type-signature"></span>playAnimation<span class="signature">(images)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Plays animation for the movable object.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_moveable-object.class.js.html">models/moveable-object.class.js</a>, <a href="models_moveable-object.class.js.html#line105">line 105</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="MoveableObject.html#playAnimation">MoveableObject#playAnimation</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>images</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Array of image paths for the animation.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="playAudio"><span class="type-signature"></span>playAudio<span class="signature">(audio, volume)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Plays audio for the movable object.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_moveable-object.class.js.html">models/moveable-object.class.js</a>, <a href="models_moveable-object.class.js.html#line117">line 117</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="MoveableObject.html#playAudio">MoveableObject#playAudio</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5 class="h5-parameters">Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>audio</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The audio key to play.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>volume</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The volume level for the audio.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="throw"><span class="type-signature"></span>throw<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+    
+    <dt class="tag-description">Description:</dt>
+    <dd class="tag-description"><ul class="dummy"><li><p>Throws the object and applies gravity.</p></li></ul></dd>
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_throwable-object.class.js.html">models/throwable-object.class.js</a>, <a href="models_throwable-object.class.js.html#line71">line 71</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Mon Apr 15 2024 18:11:29 GMT+0200 (közép-európai nyári idő) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+
+</body>
+</html>

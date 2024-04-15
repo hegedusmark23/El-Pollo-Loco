@@ -1,4 +1,6 @@
-
+/**
+ * Class representing the status bar for end boss in the game.
+ */
 class StatusBarEndboss extends DrawableObject {
     /**
          * Array containing paths to images representing different health percentages.

@@ -1,9 +1,12 @@
 
 let level1;
 
+/**
+ * Initializes the game level.
+ */
+
 function initLevel() {
-
-
+// Creates a new Level instance with specified entities.
 level1 = new Level(
     [
         new Chicken(),

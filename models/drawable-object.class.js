@@ -1,27 +1,56 @@
 
+/**
+ * Class representing a drawable object.
+ */
 class DrawableObject {
+    /**
+     * Initial x-coordinate of the drawable object.
+     */
     x = 100;
-    y = 100;
-    height = 200;
-    width = 100;
-    img;
-    imageCache = {};
-    currentImage = 0;
-
 
     /**
-    * Loads the starting image of the animation.
-    * @param {Array} path 
-    */
+     * Initial y-coordinate of the drawable object.
+     */
+    y = 100;
+
+    /**
+     * Height of the drawable object.
+     */
+    height = 200;
+
+    /**
+     * Width of the drawable object.
+     */
+    width = 100;
+
+    /**
+     * Image element for the drawable object.
+     */
+    img;
+
+    /**
+     * Cache for loaded images.
+     */
+    imageCache = {};
+
+    /**
+     * Index of the current image in animation.
+     */
+    currentImage = 0;
+
+    /**
+     * Loads the starting image of the animation.
+     * @param {string} path - The path to the image.
+     */
     loadImage(path) {
-        this.img = new Image(); // this.img = document.getElementById('image') <img src="" id="img">
-        this.img.src = path
+        this.img = new Image();
+        this.img.src = path;
     }
 
     /**
-    * Loads the images from given array.
-    * @param {Array} arr 
-    */
+     * Loads the images from the given array.
+     * @param {Array} arr - Array containing paths to images.
+     */
     loadImages(arr) {
         arr.forEach((path) => {
             let img = new Image();
@@ -31,19 +60,28 @@ class DrawableObject {
         });
     }
 
-
+    /**
+     * Converts audio objects to an array and adds them to the global soundEffects array.
+     * @param {Object} arr - Object containing audio elements.
+     */
     AudioToArray(arr) {
         Object.values(arr).forEach(sound => {
             soundEffects.push(sound);
         });
     }
 
-
+    /**
+     * Draws the drawable object on the canvas context.
+     * @param {CanvasRenderingContext2D} ctx - The canvas rendering context.
+     */
     draw(ctx) {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
 
-    
+    /**
+     * Draws the frame of the drawable object.
+     * @param {CanvasRenderingContext2D} ctx - The canvas rendering context.
+     */
     drawFrame(ctx) {
         if (this instanceof Character || this instanceof ThrowableObject || this instanceof Chicken || this instanceof Coins || this instanceof Endboss || this instanceof Bottles || this instanceof Chick ) {
             ctx.beginPath();
@@ -57,6 +95,4 @@ class DrawableObject {
             ctx.stroke();
         }
     }
-
-
 }

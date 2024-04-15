@@ -1,5 +1,8 @@
-
+/**
+ * Class representing the game world.
+ */
 class World {
+
     bottle = new ThrowableObject();
     character = new Character();
     level = level1;
@@ -23,8 +26,11 @@ class World {
     collectedBottles = 0;
     throwableObjects = [];
 
-
-
+    /**
+     * Constructs a new World object.
+     * @param {HTMLCanvasElement} canvas - The canvas element.
+     * @param {Keyboard} keyboard - The keyboard input manager.
+     */
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -36,20 +42,17 @@ class World {
     }
 
     /**
-     * Checks if objects collide with eachother.
+     * Runs the game loop.
      */
     run() {
-        
         let interval = setInterval(() => {
             this.killByJump();
+            this.killByBottle();
         }, 1000 / 10);
-
         let interval2 = setInterval(() => {
             this.checkCollisions();
-            this.killByBottle();
             this.hitByBottle();
         }, 600);
-
         let interval3 = setInterval(() => {
             this.checkThrowObjects();
             this.collectCoins();
@@ -57,17 +60,20 @@ class World {
             this.checkIfWinOrLose();
             this.returnCharacterPosition();
         }, 100);
-        intervalIds.push(interval, interval2, interval3)
+        intervalIds.push(interval, interval2, interval3);
     }
 
 
+    /**
+  * Adds the appropriate overlay based on game outcome and handles related actions.
+  */
     addOverlay() {
         if (this.didLose) {
             setTimeout(() => {
                 this.stopGame();
             }, 500);
             this.addToMap(this.loseOverlay);
-            this.playAudio(this.winOverlay, 'lose_sound', 0.4)
+            this.playAudio(this.winOverlay, 'lose_sound', 0.3);
             this.pauseAudio();
             revealObject('restart-button');
         } else if (this.didWin) {
@@ -75,51 +81,59 @@ class World {
                 this.stopGame();
             }, 600);
             this.addToMap(this.winOverlay);
-            this.playAudio(this.winOverlay, 'win_sound', 0.4)
+            this.playAudio(this.winOverlay, 'win_sound', 0.3);
             this.pauseAudio();
             revealObject('restart-button');
         }
     }
 
-
+    /**
+     * Checks if the player has won or lost the game.
+     */
     checkIfWinOrLose() {
         if (this.character.energy == 0) {
             this.didLose = true;
         } else if (this.level.endboss.energy == 0) {
             this.didWin = true;
         }
-
     }
 
-
+    /**
+     * Checks collisions between the character and enemies or the endboss.
+     */
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && !enemy.isJumpedOn) {
                 this.character.hit(20);
-                this.statusBar.setPercentage(this.character.energy)
+                this.statusBar.setPercentage(this.character.energy);
             }
-        }); if (this.character.isColliding(this.level.endboss) && !this.level.enemies.isJumpedOn) {
+        });
+        if (this.character.isColliding(this.level.endboss) && !this.level.enemies.isJumpedOn) {
             this.character.hit(40);
-            this.statusBar.setPercentage(this.character.energy)
+            this.statusBar.setPercentage(this.character.energy);
         }
     }
 
-
+    /**
+     * Checks if the player throws objects using keyboard input.
+     */
     checkThrowObjects() {
         if (this.keyboard.D) {
             if (this.collectedBottles >= 1) {
                 this.check_if_threw = true;
                 let throw_direction = this.character.otherDirection ? 'left' : 'right';
                 let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100, this.check_if_threw, throw_direction);
-                this.playAudio(bottle, 'throw_sound', 0.2)
+                this.playAudio(bottle, 'throw_sound', 0.2);
                 this.collectedBottles--;
-                this.statusBarFlasks.setPercentage(this.collectedBottles)
-                this.throwableObjects.push(bottle)
+                this.statusBarFlasks.setPercentage(this.collectedBottles);
+                this.throwableObjects.push(bottle);
             }
         }
     }
 
-
+    /**
+     * Handles enemy elimination when the character jumps on them.
+     */
     killByJump() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && this.character.isAboveGround() && this.character.speedY < 0) {
@@ -127,20 +141,25 @@ class World {
                 setTimeout(() => {
                     this.level.enemies.splice(this.level.enemies.indexOf(enemy), 1);
                 }, 300);
-                this.playAudio(enemy, 'jumped_on_sound', 0.2)
+                this.playAudio(enemy, 'jumped_on_sound', 0.2);
                 this.jumpAfterKill();
             }
         });
     }
 
+    /**
+     * Initiates character jump after eliminating an enemy.
+     */
     jumpAfterKill() {
         if (this.character.y > 70) {
             this.character.speedY = 10;
-            this.playAudio(this.character, 'bouncing_sound', 0.2)
+            this.playAudio(this.character, 'bouncing_sound', 0.2);
         }
     }
 
-
+    /**
+     * Handles enemy elimination by thrown bottles.
+     */
     killByBottle() {
         this.throwableObjects.forEach((bottle, indexBottle) => {
             this.level.enemies.forEach((enemy) => {
@@ -155,6 +174,9 @@ class World {
         });
     }
 
+    /**
+     * Handles boss hit by thrown bottles.
+     */
     hitByBottle() {
         this.throwableObjects.forEach((bottle, indexBottle) => {
             if (this.bottleCollidingEnemy(this.endboss, indexBottle)) {
@@ -166,38 +188,53 @@ class World {
         });
     }
 
-
+    /**
+     * Checks if a bottle collides with an enemy.
+     * @param {Enemy} enemy - The enemy object.
+     * @param {number} indexBottle - The index of the throwable object array.
+     * @returns {boolean} - Whether collision occurred.
+     */
     bottleCollidingEnemy(enemy, indexBottle) {
         return this.throwableObjects[indexBottle].isColliding(enemy);
     }
 
 
+    /**
+ * Checks for collision between the character and bottles, allowing collection.
+ */
     collectBottles() {
         this.level.bottles.forEach((bottle) => {
             if (this.character.isColliding(bottle)) {
                 if (this.collectedBottles < 5) {
                     this.level.bottles.splice(this.level.bottles.indexOf(bottle), 1);
                     this.collectedBottles++;
-                    this.playAudio(bottle, 'item_pickup_sound', 1)
-                    this.statusBarFlasks.setPercentage(this.collectedBottles)
+                    this.playAudio(bottle, 'item_pickup_sound', 1);
+                    this.statusBarFlasks.setPercentage(this.collectedBottles);
                 }
             }
         });
     }
 
-
+    /**
+     * Checks for collision between the character and coins, allowing collection.
+     */
     collectCoins() {
         this.level.coins.forEach((coin) => {
             if (this.character.isColliding(coin)) {
                 this.level.coins.splice(this.level.coins.indexOf(coin), 1);
                 this.collectedCoins++;
-                this.statusBarCoins.setPercentage(this.collectedCoins)
-                this.playAudio(coin, 'collect_coin_sound', 1)
+                this.statusBarCoins.setPercentage(this.collectedCoins);
+                this.playAudio(coin, 'collect_coin_sound', 1);
             }
         });
     }
 
-
+    /**
+     * Plays audio associated with the specified object and audio key.
+     * @param {Object} obj - The object to play audio for.
+     * @param {string} audio - The key for the audio to play.
+     * @param {number} vol - The volume level for the audio.
+     */
     playAudio(obj, audio, vol) {
         if (this.loopAudio) {
             obj.audio[audio].volume = vol;
@@ -207,33 +244,46 @@ class World {
         }
     }
 
-
+    /**
+     * Pauses audio playback after a delay.
+     */
     pauseAudio() {
         setTimeout(() => {
             this.loopAudio = false;
         }, 3000);
     }
 
+    /**
+     * Stops the game by clearing all running intervals.
+     */
     stopGame() {
         for (let i = 0; i < intervalIds.length; i++) {
             const id = intervalIds[i];
-            clearInterval(id)
+            clearInterval(id);
         }
     }
 
+    /**
+     * Sets the 'isAtBoss' flag based on the character's x-position.
+     */
     returnCharacterPosition() {
         if (this.character.x > 2720) {
             this.isAtBoss = true;
         }
     }
 
+    /**
+     * Reveals the boss's health bar when the character reaches the boss area.
+     */
     revealBossHealth() {
         if (this.isAtBoss == true) {
             this.addToMap(this.statusBarEndboss);
         }
     }
 
-
+    /**
+     * Draws the game elements on the canvas, including dynamic and static objects.
+     */
     draw() {
         // Clear frame.
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -253,51 +303,64 @@ class World {
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
         this.addToMap(this.level.endboss);
-        this.addObjectsToMap(this.throwableObjects)
+        this.addObjectsToMap(this.throwableObjects);
         this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.level.coins);
         this.ctx.translate(-this.camera_x, 0);
-        // Draw gonna be constantly called.
+        // Draw will be constantly called.
         let self = this;
         requestAnimationFrame(function () {
             self.draw();
         });
     }
 
+    /**
+     * Adds an array of objects to the map for drawing.
+     * @param {Array} objects - Array of objects to add to the map.
+     */
     addObjectsToMap(objects) {
         objects.forEach(o => {
             this.addToMap(o);
         });
     }
 
-
+    /**
+     * Adds an object to the map for drawing.
+     * @param {Object} mo - The object to add to the map.
+     */
     addToMap(mo) {
         if (mo.otherDirection) {
             this.flipImage(mo);
         }
-        mo.draw(this.ctx)
-        //mo.drawFrame(this.ctx)
+        mo.draw(this.ctx);
         if (mo.otherDirection) {
             this.flipImageBack(mo);
         }
     }
 
-
+    /**
+     * Flips the image horizontally for drawing if needed.
+     * @param {Object} mo - The object whose image is to be flipped.
+     */
     flipImage(mo) {
         this.ctx.save();
         this.ctx.translate(mo.width, 0);
         this.ctx.scale(-1, 1);
         mo.x = mo.x * -1;
-
     }
 
-
+    /**
+     * Restores the original orientation of the image after flipping.
+     * @param {Object} mo - The object whose image is to be restored.
+     */
     flipImageBack(mo) {
         mo.x = mo.x * -1;
         this.ctx.restore();
     }
 
-
+    /**
+     * Sets the world property of the character object.
+     */
     setWorld() {
         this.character.world = this;
     }

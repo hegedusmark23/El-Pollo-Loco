@@ -9,8 +9,13 @@
     <link rel="shortcut icon" href="img/3_enemies_chicken/chicken_normal/1_walk/1_w.png" type="image/png">
 </head>
 
-<body>
-    <h1>El Pollo Loco</h1>
+<body onload="handleTurnDeviceWarning();">
+    <h1 class="headline">El Pollo Loco</h1>
+
+    <div id="turn-device-warning" class="turn-device-warning d-none">
+        <img class="turn-device-image" src="img/turn-device.png" alt="turn-device">
+        <h1 class="warning">Turn your device.</h1>
+    </div>
 
     <div class="canvas-mask" id="canvas-mask">
 
@@ -20,47 +25,72 @@
                 <div onclick="init()" class="pointer button">start game</div>
                 <div onclick="toggleControls()" class="pointer button">controls</div>
             </div>
-       </div>
+        </div>
 
-       <div class="controls-window d-none" id="controls-window">
+        <div class="controls-window d-none" id="controls-window">
             <div class="controls-content">
                 <img onclick="toggleControls()" class="close-button pointer" src="img/close.png" alt="">
                 <table>
                     <tbody>
-                    <tr>
-                    <td>&nbsp;Move left</td>
-                    <td>&nbsp;<img class="button-img" src="img/left-arrow-button-icon.png" alt=""></td>
-                    </tr>
-                    <tr>
-                    <td>&nbsp;Move right</td>
-                    <td>&nbsp;<img class="button-img" src="img/right-arrow-button-icon.png" alt=""></td>
-                    </tr>
-                    <tr>
-                    <td>&nbsp;Jump</td>
-                    <td>&nbsp;<img class="button-img" src="img/space-button-icon.png" alt=""></td>
-                    </tr>
-                    <tr>
-                    <td>&nbsp;Throw Bottle</td>
-                    <td>&nbsp;<img class="button-img" src="img/d-button-icon.png" alt=""></td>
-                    </tr>
+                        <tr>
+                            <td class="controls-text">&nbsp;Move left</td>
+                            <td>&nbsp;<img class="button-img" src="img/left-arrow-button-icon.png" alt=""></td>
+                        </tr>
+                        <tr>
+                            <td class="controls-text">&nbsp;Move right</td>
+                            <td>&nbsp;<img class="button-img" src="img/right-arrow-button-icon.png" alt=""></td>
+                        </tr>
+                        <tr>
+                            <td class="controls-text">&nbsp;Jump</td>
+                            <td>&nbsp;<img class="button-img" src="img/space-button-icon.png" alt=""></td>
+                        </tr>
+                        <tr>
+                            <td class="controls-text">&nbsp;Throw Bottle</td>
+                            <td>&nbsp;<img class="button-img" src="img/d-button-icon.png" alt=""></td>
+                        </tr>
                     </tbody>
-                    </table>
+                </table>
             </div>
-       </div>
+        </div>
 
         <div id="top-right-buttons" class="d-none">
-            <img id="volume-icon" class="close-button pointer padding-right" onclick="toggleMuteAudio()" src="img/volume.png" alt="">
-            <img id="fullscreen-icon" class="close-button pointer" onclick="fullScreen()" src="img/full-screen.png" alt="">
-            
+            <img id="volume-icon" class="close-button pointer padding-right" onclick="toggleMuteAudio()"
+                src="img/volume.png" alt="">
+            <img id="fullscreen-icon" class="close-button pointer" onclick="fullScreen()" src="img/full-screen.png"
+                alt="">
+
         </div>
 
         <div class="restart-button-container d-none" id="restart-button">
             <div onclick="reloadPage()" class="font-size-40 button pointer margin-bottom">restart game</div>
         </div>
 
+        <div id="mobile-controls" class="mobile-controls d-none">
+
+            <div class="panel">
+                <div id="left" class="mobile-button pointer">
+                    <img class="mobile-button-icon" src="img/left-arrow.png" alt="left-arrow">
+                </div>
+
+                <div id="jump" class="mobile-button pointer">
+                    <img class="mobile-button-icon" src="img/up-arrow.png" alt="up-arrow">
+                </div>
+            </div>
+
+            <div class="panel">
+                <div id="throw" class="mobile-button pointer">
+                    <img class="mobile-button-icon" src="img/bottle.png" alt="bottle">
+                </div>
+                <div id="right" class="mobile-button pointer">
+                    <img class="mobile-button-icon" src="img/right-arrow.png" alt="right-arrow">
+                </div>
+            </div>
+
+        </div>
+
         <canvas id="canvas" width="720" height="480"></canvas>
     </div>
-
+    
     <script src="models/drawable-object.class.js"></script>
     <script src="models/moveable-object.class.js"></script>
     <script src="models/background-object.class.js"></script>
