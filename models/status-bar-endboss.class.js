@@ -6,7 +6,7 @@ class StatusBarEndboss extends DrawableObject {
          * Array containing paths to images representing different health percentages.
          * @type {string[]}
          */
-    IMAGES_HEALTH = [
+    IMAGES_HEALTH_ENDBOSS = [
         'img/7_statusbars/2_statusbar_endboss/green/green0.png',
         'img/7_statusbars/2_statusbar_endboss/green/green20.png',
         'img/7_statusbars/2_statusbar_endboss/green/green40.png',
@@ -31,12 +31,12 @@ class StatusBarEndboss extends DrawableObject {
     /**
      * Sets the health percentage and updates the displayed image accordingly.
      * @param {number} percentage - The health percentage to set.
-     */
+     
     setPercentage(percentage) {
         this.percentage = percentage;
         let path = this.IMAGES_HEALTH[this.resolveImageIndex()];
         this.img = this.imageCache[path];
-    }
+    }*/
 
     /**
      * Resolves the index of the image array based on the current health percentage.

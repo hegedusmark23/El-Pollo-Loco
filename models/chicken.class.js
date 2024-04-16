@@ -46,23 +46,27 @@ class Chicken extends MoveableObject {
     animate() {
         // Moves the chicken left if not jumped on.
         let interval = setInterval(() => {
-            if (this.isJumpedOn == false) {
-                this.moveLeft()
-            } else {
-                this.doNotMove();
-            }
+            this.moveChicken();
         }, 1000 / 60);
-
-        // Plays walking or dead animation based on chicken's state.
         let interval2 = setInterval(() => {
-            if (this.isJumpedOn == false) {
-                this.playAnimation(this.IMAGES_WALKING);
-            } else {
-                this.playAnimation(this.IMAGE_DEAD);
-            }
+            this.animateChicken();
         }, 1000 / 8);
-        // Pushes interval IDs to the global array.
         intervalIds.push(interval, interval2);
     }
 
+    moveChicken() {
+        if (this.isJumpedOn == false) {
+            this.moveLeft()
+        } else {
+            this.doNotMove();
+        }
+    }
+
+    animateChicken() {
+        if (this.isJumpedOn == false) {
+            this.playAnimation(this.IMAGES_WALKING);
+        } else {
+            this.playAnimation(this.IMAGE_DEAD);
+        }
+    }
 }

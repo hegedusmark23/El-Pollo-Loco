@@ -52,24 +52,28 @@ class Chick extends MoveableObject {
      * Animates the chick.
      */
     animate() {
-        // Moves the chick left if not jumped on.
         let interval = setInterval(() => {
-            if (this.isJumpedOn == false) {
-                this.moveLeft()
-            } else {
-                this.doNotMove();
-            }
+            this.moveChick();
         }, 1000 / 60);
-
-        // Plays walking or dead animation based on chick's state.
         let interval2 = setInterval(() => {
-            if (this.isJumpedOn == false) {
-                this.playAnimation(this.IMAGES_WALKING);
-            } else {
-                this.playAnimation(this.IMAGE_DEAD);
-            }
+            this.animateChick()
         }, 1000 / 8);
-        // Pushes interval IDs to the global array.
         intervalIds.push(interval, interval2);
+    }
+
+    moveChick(){
+        if (this.isJumpedOn == false) {
+            this.moveLeft()
+        } else {
+            this.doNotMove();
+        }
+    }
+
+    animateChick(){
+        if (this.isJumpedOn == false) {
+            this.playAnimation(this.IMAGES_WALKING);
+        } else {
+            this.playAnimation(this.IMAGE_DEAD);
+        }
     }
 }

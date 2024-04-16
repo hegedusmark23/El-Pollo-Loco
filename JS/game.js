@@ -33,11 +33,26 @@ function init() {
     handleMobileButtons();
 }
 
+function restartGame() {
+    hideObject('restart-button');
+    world.stopGame();
+    startGame();
+}
+
+function startGame() {
+    initLevel();
+    canvas = document.getElementById('canvas');
+    world = new World(canvas, keyboard);
+    playBackgoundMusic();
+    idle();
+    mobileButtonsPressEvents();
+    handleMobileButtons();
+}
+
 /**
  * Handles disappearing objects on the screen.
  */
 function handleDisappearingObjects() {
-    // Retrieves elements for start screen and top right buttons.
     startScreen = document.getElementById('start-screen');
     topRightButtons = document.getElementById('top-right-buttons');
     // Hides the start screen and reveals top right buttons.
@@ -119,10 +134,12 @@ function toggleMuteAudio() {
         soundEffects.forEach(sound => { sound.muted = true });
         isMuted = true;
         document.getElementById('volume-icon').src = "img/mute.png";
+        world.muted = true;
     } else {
         soundEffects.forEach(sound => { sound.muted = false });
         isMuted = false;
         document.getElementById('volume-icon').src = "img/volume.png";
+        world.muted = false;
     }
 }
 

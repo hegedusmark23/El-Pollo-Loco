@@ -91,6 +91,10 @@ class MoveableObject extends DrawableObject {
         }
     }
 
+    isCharacterOnGround() {
+        return this.y = 180;
+    }
+
     /**
      * Checks if the movable object is on the ground.
      */
@@ -99,7 +103,7 @@ class MoveableObject extends DrawableObject {
     }
 
     /**
-     * Plays animation for the movable object.
+     * Plays animation continously for the movable object.
      * @param {Array} images - Array of image paths for the animation.
      */
     playAnimation(images) {
@@ -108,6 +112,25 @@ class MoveableObject extends DrawableObject {
         this.img = this.imageCache[path];
         this.currentImage++;
     }
+
+    /**
+     * Plays animation only once for the movable object.
+     * @param {Array} images - Array of image paths for the animation.
+     */
+    playAnimationOnce(images) {
+        let i = this.currentImage % images.length;
+        let path = images[i];
+        this.img = this.imageCache[path];
+        // Check if the current image is the last one
+        if (this.currentImage === images.length - 1) {
+            // If it is the last image, stop the animation
+            // You can add any additional logic here, such as pausing or hiding the animation
+            this.currentImage = 0; // Reset currentImage to 0 to restart the animation
+            return;
+        }
+        this.currentImage++; // Increment only if it's not the last image
+    }
+
 
     /**
      * Plays audio for the movable object.
@@ -137,6 +160,6 @@ class MoveableObject extends DrawableObject {
 
 
     jump() {
-        this.speedY = 16;
+        this.speedY = 18;
     }
 }

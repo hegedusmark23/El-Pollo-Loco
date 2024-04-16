@@ -29,16 +29,6 @@ class StatusBarFlasks extends DrawableObject {
     }
 
     /**
-     * Sets the percentage level of flasks and updates the image accordingly.
-     * @param {number} percentage - The percentage level of flasks.
-     */
-    setPercentage(percentage) {
-        this.percentage = percentage;
-        let path = this.IMAGES_FLASKS[this.resolveImageIndex()];
-        this.img = this.imageCache[path];
-    }
-
-    /**
      * Resolves the index of the image based on the current percentage level.
      * @returns {number} - The index of the image in the IMAGES_FLASKS array.
      */

@@ -89,6 +89,8 @@ class ThrowableObject extends MoveableObject {
         }
     }
 
+    checkIfMuted(){}
+
     /**
      * Animates the throwable object.
      */
@@ -98,7 +100,9 @@ class ThrowableObject extends MoveableObject {
             if (this.isOnGround() && this.splash || world.isCollidingWithBoss) {
                 clearInterval(interval);
                 this.playAnimation(this.IMAGES_SPLASH);
-                this.playAudio('bottle_shatter_sound', 0.2);
+                if (!world.muted) {
+                    this.playAudio('bottle_shatter_sound', 0.2);
+                }
                 this.splash = false;
                 world.isCollidingWithBoss = false;
                 setTimeout(() => {

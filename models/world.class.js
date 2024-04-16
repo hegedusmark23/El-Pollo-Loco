@@ -18,6 +18,7 @@ class World {
     isAtBoss = false;
     isCollidingWithBoss = false;
     loopAudio = true;
+    muted = false;
     ctx;
     canvas;
     keyboard;
@@ -123,7 +124,9 @@ class World {
                 this.check_if_threw = true;
                 let throw_direction = this.character.otherDirection ? 'left' : 'right';
                 let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100, this.check_if_threw, throw_direction);
-                this.playAudio(bottle, 'throw_sound', 0.2);
+                if (!this.muted) {
+                    this.playAudio(bottle, 'throw_sound', 0.2);
+                }
                 this.collectedBottles--;
                 this.statusBarFlasks.setPercentage(this.collectedBottles);
                 this.throwableObjects.push(bottle);

@@ -27,15 +27,7 @@ class StatusBarCoins extends DrawableObject {
         this.setPercentage(0);
     }
 
-    /**
-     * Sets the percentage level of coins and updates the image accordingly.
-     * @param {number} percentage - The percentage level of coins.
-     */
-    setPercentage(percentage) {
-        this.percentage = percentage;
-        let path = this.IMAGES_COINS[this.resolveImageIndex()];
-        this.img = this.imageCache[path];
-    }
+    
 
     /**
      * Resolves the index of the image based on the current percentage level.

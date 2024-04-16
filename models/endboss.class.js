@@ -88,17 +88,21 @@ class Endboss extends MoveableObject {
                 } else if (this.isHurt()) {
                     this.playAnimation(this.IMAGES_HURT);
                 } else if (this.hadFirstContact) {
-                    if (this.energy > 60) {
-                        this.playAnimation(this.IMAGES_WALKING);
-                    } else {
-                        this.playAnimation(this.IMAGES_ATTACK);
-                    }
-                    this.moveLeft();
+                    this.moveEndboss();
                 } else if (world.character.x < 2720) {
                     this.playAnimation(this.IMAGES_ALERT);
                 }
             }, 100);
             intervalIds.push(interval);
+        }
+
+        moveEndboss(){
+            if (this.energy > 60) {
+                this.playAnimation(this.IMAGES_WALKING);
+            } else {
+                this.playAnimation(this.IMAGES_ATTACK);
+            }
+            this.moveLeft();
         }
     
         /**

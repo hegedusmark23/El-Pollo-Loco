@@ -52,7 +52,6 @@ class Bottles extends MoveableObject {
                 }
             }
         }, 300);
-        // Pushes the interval ID to the global array.
         intervalIds.push(interval);
     }
 }

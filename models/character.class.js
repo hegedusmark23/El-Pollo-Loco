@@ -161,14 +161,13 @@ class Character extends MoveableObject {
         if (this.isDead()) {
             this.playAnimation(this.IMAGES_DEAD)
             this.fallDown();
-        }
-        else if (this.isHurt()) {
+        } else if (this.isHurt()) {
             this.playAnimation(this.IMAGES_HURT)
             this.playAudio('hurt_sound',0.5);
         } else if (this.isAboveGround()) {
             this.playAnimation(this.IMAGES_JUMPING);
         } else if (this.world.keyboard.idle) {
-            this.playAnimation(this.IMAGES_IDLE);
+            this.playAnimationOnce(this.IMAGES_IDLE);
         } else if (this.world.keyboard.long_idle) {
             this.playAnimation(this.IMAGES_LONG_IDLE);
         } else {
