@@ -4,7 +4,7 @@
 class Chick extends MoveableObject {
     height = 60;
     width = 40;
-    y = 360;
+    y = 370;
     isJumpedOn = false;
     energy = 20;
     offset = {

@@ -35,18 +35,8 @@ function init() {
 
 function restartGame() {
     hideObject('restart-button');
-    world.stopGame();
-    startGame();
-}
-
-function startGame() {
-    initLevel();
-    canvas = document.getElementById('canvas');
-    world = new World(canvas, keyboard);
-    playBackgoundMusic();
-    idle();
-    mobileButtonsPressEvents();
-    handleMobileButtons();
+    background_music.play();
+    init();
 }
 
 /**

@@ -69,57 +69,73 @@ class DrawableObject {
         this.img = this.imageCache[path];
     }
 
-    handleInstance(){
-        if (this instanceof StatusBarCoins) {
-            return this.IMAGES_COINS[this.resolveImageIndex()];
-        } else if (this instanceof StatusBarFlasks) {
-            return this.IMAGES_FLASKS[this.resolveImageIndex()];
-        } else if (this instanceof StatusBarEndboss) {
-            return this.IMAGES_HEALTH_ENDBOSS[this.resolveImageIndex()];
-        } else {
-            return this.IMAGES_HEALTH[this.resolveImageIndex()];
-        }
+   /**
+ * Determines the appropriate image path based on the current instance type and percentage value.
+ * @returns {string} The path to the image.
+ */
+handleInstance() {
+    if (this instanceof StatusBarCoins) {
+        return this.IMAGES_COINS[this.resolveImageIndex()];
+    } else if (this instanceof StatusBarFlasks) {
+        return this.IMAGES_FLASKS[this.resolveImageIndex()];
+    } else if (this instanceof StatusBarEndboss) {
+        return this.IMAGES_HEALTH_ENDBOSS[this.resolveImageIndex()];
+    } else {
+        return this.IMAGES_HEALTH[this.resolveImageIndex()];
     }
+}
 
-    resolveImageIndex() {
-        if (this instanceof StatusBarCoins || this instanceof StatusBarFlasks) {
-            this.percentageInvers();
-        } else if (this instanceof StatusBarEndboss || this instanceof StatusBar) {
-            this.percentage();
-        }
+/**
+ * Resolves the index of the image based on the percentage value.
+ * @returns {number} The index of the image.
+ */
+resolveImageIndex() {
+    if (this instanceof StatusBarCoins || this instanceof StatusBarFlasks) {
+        return this.percentageInvers(); // Call as property
+    } else if (this instanceof StatusBarEndboss || this instanceof StatusBar) {
+        return this.percentageNormal(); // Call as property
     }
+}
 
-    percentage(){
-        if (this.percentage == 100) {
-            return 5;
-        } else if (this.percentage == 80) {
-            return 4;
-        } else if (this.percentage == 60) {
-            return 3;
-        } else if (this.percentage == 40) {
-            return 2;
-        } else if (this.percentage == 20) {
-            return 1;
-        } else {
-            return 0;
-        }
+/**
+ * Determines the index of the image based on the percentage value in a normal progression.
+ * @returns {number} The index of the image.
+ */
+percentageNormal() {
+    if (this.percentage == 100) {
+        return 5;
+    } else if (this.percentage == 80) {
+        return 4;
+    } else if (this.percentage == 60) {
+        return 3;
+    } else if (this.percentage == 40) {
+        return 2;
+    } else if (this.percentage == 20) {
+        return 1;
+    } else {
+        return 0;
     }
+}
 
-    percentageInvers(){
-        if (this.percentage == 0) {
-            return 0;
-        } else if (this.percentage == 1) {
-            return 1;
-        } else if (this.percentage == 2) {
-            return 2;
-        } else if (this.percentage == 3) {
-            return 3;
-        } else if (this.percentage == 4) {
-            return 4;
-        } else {
-            return 5;
-        }
-    }
+/**
+ * Determines the index of the image based on the percentage value in an inverse progression.
+ * @returns {number} The index of the image.
+ */
+percentageInvers() {
+    if (this.percentage == 0) {
+       return 0;
+   } else if (this.percentage == 1) {
+       return 1;
+   } else if (this.percentage == 2) {
+       return 2;
+   } else if (this.percentage == 3) {
+       return 3;
+   } else if (this.percentage == 4) {
+       return 4;
+   } else {
+       return 5;
+   }
+}
 
     /**
      * Converts audio objects to an array and adds them to the global soundEffects array.

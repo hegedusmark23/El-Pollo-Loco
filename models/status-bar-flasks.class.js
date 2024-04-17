@@ -27,24 +27,4 @@ class StatusBarFlasks extends DrawableObject {
         this.height = 60;
         this.setPercentage(0);
     }
-
-    /**
-     * Resolves the index of the image based on the current percentage level.
-     * @returns {number} - The index of the image in the IMAGES_FLASKS array.
-     */
-    resolveImageIndex(){
-        if (this.percentage == 0) {
-            return 0;
-        } else if (this.percentage == 1) {
-            return 1;
-        } else if (this.percentage == 2) {
-            return 2;
-        } else if (this.percentage == 3) {
-            return 3;
-        } else if (this.percentage == 4) {
-            return 4;
-        } else {
-            return 5;
-        }
-    }
 }

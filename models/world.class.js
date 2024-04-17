@@ -49,11 +49,11 @@ class World {
         let interval = setInterval(() => {
             this.killByJump();
             this.killByBottle();
-        }, 1000 / 10);
+        }, 1000 / 60);
         let interval2 = setInterval(() => {
             this.checkCollisions();
             this.hitByBottle();
-        }, 600);
+        }, 400);
         let interval3 = setInterval(() => {
             this.checkThrowObjects();
             this.collectCoins();
@@ -72,7 +72,7 @@ class World {
         if (this.didLose) {
             setTimeout(() => {
                 this.stopGame();
-            }, 500);
+            }, 2000);
             this.addToMap(this.loseOverlay);
             this.playAudio(this.winOverlay, 'lose_sound', 0.3);
             this.pauseAudio();
@@ -80,7 +80,7 @@ class World {
         } else if (this.didWin) {
             setTimeout(() => {
                 this.stopGame();
-            }, 600);
+            }, 2000);
             this.addToMap(this.winOverlay);
             this.playAudio(this.winOverlay, 'win_sound', 0.3);
             this.pauseAudio();
@@ -264,6 +264,9 @@ class World {
             const id = intervalIds[i];
             clearInterval(id);
         }
+        this.didLose = false;
+        this.didWin = false;
+        console.log(this.didLose,this.didWin)
     }
 
     /**
