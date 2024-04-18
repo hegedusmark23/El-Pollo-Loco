@@ -3,6 +3,7 @@ let world;
 let keyboard = new Keyboard();
 let isFullscreen = false;
 let isMuted = false;
+let stopGame = false;
 let background_music = new Audio('audio/background-music.mp3');
 let soundEffects = [
     background_music,
@@ -34,9 +35,16 @@ function init() {
 }
 
 function restartGame() {
+    stopGame = false;
+    world = null;
     hideObject('restart-button');
-    background_music.play();
-    init();
+    initLevel();
+    canvas = document.getElementById('canvas');
+    world = new World(canvas, keyboard);
+    playBackgoundMusic();
+    idle();
+    mobileButtonsPressEvents();
+    handleMobileButtons();
 }
 
 /**

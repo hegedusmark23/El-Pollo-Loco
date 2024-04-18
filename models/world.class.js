@@ -36,9 +36,12 @@ class World {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
-        this.draw();
-        this.setWorld();
-        this.run();
+        if (!stopGame) {
+            this.draw();
+            this.setWorld();
+            this.run();
+        }
+
         this.endboss = new Endboss();
     }
 
@@ -48,7 +51,6 @@ class World {
     run() {
         let interval = setInterval(() => {
             this.killByJump();
-            this.killByBottle();
         }, 1000 / 60);
         let interval2 = setInterval(() => {
             this.checkCollisions();
@@ -60,6 +62,7 @@ class World {
             this.collectBottles();
             this.checkIfWinOrLose();
             this.returnCharacterPosition();
+            this.killByBottle();
         }, 100);
         intervalIds.push(interval, interval2, interval3);
     }
@@ -70,22 +73,30 @@ class World {
   */
     addOverlay() {
         if (this.didLose) {
-            setTimeout(() => {
-                this.stopGame();
-            }, 2000);
-            this.addToMap(this.loseOverlay);
-            this.playAudio(this.winOverlay, 'lose_sound', 0.3);
-            this.pauseAudio();
-            revealObject('restart-button');
+           this.loseScenario();
         } else if (this.didWin) {
-            setTimeout(() => {
-                this.stopGame();
-            }, 2000);
-            this.addToMap(this.winOverlay);
-            this.playAudio(this.winOverlay, 'win_sound', 0.3);
-            this.pauseAudio();
-            revealObject('restart-button');
+            this.winScenario();
         }
+    }
+
+    loseScenario(){
+        setTimeout(() => {
+            this.stopGame();
+        }, 2000);
+        this.addToMap(this.loseOverlay);
+        this.playAudio(this.winOverlay, 'lose_sound', 0.3);
+        this.pauseAudio();
+        revealObject('restart-button');
+    }
+
+    winScenario(){
+        setTimeout(() => {
+            this.stopGame();
+        }, 2000);
+        this.addToMap(this.winOverlay);
+        this.playAudio(this.winOverlay, 'win_sound', 0.3);
+        this.pauseAudio();
+        revealObject('restart-button');
     }
 
     /**
@@ -165,12 +176,14 @@ class World {
      */
     killByBottle() {
         this.throwableObjects.forEach((bottle, indexBottle) => {
+            let bottleUsed = false; // Flag to track if the bottle has been used
             this.level.enemies.forEach((enemy) => {
-                if (this.bottleCollidingEnemy(enemy, indexBottle)) {
+                if (!bottleUsed && this.bottleCollidingEnemy(enemy, indexBottle)) {
+                    bottleUsed = true; // Set the flag to true for this bottle
                     enemy.isJumpedOn = true;
                     setTimeout(() => {
                         this.level.enemies.splice(this.level.enemies.indexOf(enemy), 1);
-                    }, 500);
+                    }, 300);
                     this.playAudio(enemy, 'jumped_on_sound', 0.2);
                 }
             });
@@ -260,13 +273,10 @@ class World {
      * Stops the game by clearing all running intervals.
      */
     stopGame() {
-        for (let i = 0; i < intervalIds.length; i++) {
-            const id = intervalIds[i];
-            clearInterval(id);
-        }
+        for (let i = 1; i < 9999; i++) window.clearInterval(i);
         this.didLose = false;
         this.didWin = false;
-        console.log(this.didLose,this.didWin)
+        stopGame = true;
     }
 
     /**
